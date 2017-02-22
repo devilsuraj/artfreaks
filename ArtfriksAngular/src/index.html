@@ -15,13 +15,16 @@
     <script src="node_modules/systemjs/dist/system.src.js"></script>
    <script src="https://use.fontawesome.com/a329414e7c.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="/js/materialize.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+   
+     <script src="node_modules/core-js/client/shim.min.js"></script>
+
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+
     <script src="systemjs.config.js"></script>
     <script>
-   
-       System.import('app/vendor').then(function() {
-          System.import('main').catch(function(err){ console.error(err); });
-      });
+      System.import('main.js').catch(function(err){ console.error(err); });
     </script>
   </head>
 

@@ -17,6 +17,53 @@ gulp.task('dist', function(done) {
     });
 });
 
+var browserify = require('gulp-browserify');
+ 
+// Basic usage 
+gulp.task('browserify', function() {
+    // Single entry point to browserify 
+    gulp.src('dist2/app.js')
+        .pipe(browserify({
+         // insertGlobals : true,
+          debug : !gulp.env.production
+        }))
+        .pipe(gulp.dest('dist3'))
+});
+
+var gzip = require('gulp-gzip');
+
+gulp.task('compress2', function() {
+    gulp.src('./dist2/app.js')
+    .pipe(gzip())
+    .pipe(gulp.dest('./dist4'));
+});
+
+var gulp = require('gulp');
+var uglify = require('gulp-uglify');
+var pump = require('pump');
+
+gulp.task('compress', function (cb) {
+  pump([
+        gulp.src('app.js'),
+        uglify(),
+        gulp.dest('dist2')
+    ],
+    cb
+  );
+});
+
+var Builder = require('systemjs-builder');
+gulp.task('bundle2', function () {
+    var builder = new Builder();
+
+    //returns a promise
+    return builder.loadConfig('./src/systemjs.config.js')
+      .then(function () {
+          // ready to build
+          // returns a promise
+          return builder.buildStatic('src/main', './app.js');
+      });
+});
 gulp.task('bundle', ['bundle:vendor', 'bundle:app'], function () {
     return gulp.src('./src/index.html')
         .pipe(htmlreplace({

@@ -76,8 +76,8 @@
     "gulp-clean": "^0.3.2",
     "gulp-html-replace": "^1.6.1",
     "gulp-shell": "^0.5.2",
- 
-    "run-sequence": "^1.2.2",
+    "gulp-uglify":"*",
+    "pump":"*",
     "systemjs-builder": "^0.15.31",
     "@types/node": "^6.0.46",
     "@types/jasmine": "2.5.36"

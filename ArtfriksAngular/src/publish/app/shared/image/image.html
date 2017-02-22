@@ -1,0 +1,2 @@
+<img *ngIf="loading" src="/images/preloader.gif" alt="loading" width="50" />
+<img [hidden]="loading" (load)="this.loading=false;" src="{{src}}" alt="{{alt}}" width="{{width}}" />

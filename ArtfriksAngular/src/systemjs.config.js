@@ -4,6 +4,7 @@
  */
 (function (global) {
   System.config({
+      "defaultJSExtensions": true,
     paths: {
       // paths serve as alias
       'npm:': 'node_modules/'
@@ -24,12 +25,9 @@
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
            'angular2-jwt': 'npm:angular2-jwt/angular2-jwt.js',
             "materialize-css": "npm:materialize-css",
-            "materialize": "npm:angular2-materialize/dist",
-            "angular2-materialize": "npm:angular2-materialize/dist",
+            "angular2-materialize": "npm:angular2-materialize",
             "angular2-google-map-auto-complete":"npm:angular2-google-map-auto-complete",
-            'core-js-shim':'npm:core-js/client/shim.min.js',
-'zone':'npm:zone.js/dist/zone.js',
-'reflect':'npm:reflect-metadata/Reflect.js',
+      
       
       // other libraries
       'rxjs':                      'npm:rxjs',
@@ -41,15 +39,11 @@
         defaultExtension: 'js'
       },    'materialize-css': {
                 "format": "global",
-                "main": "js/materialize",
+                "main": "dist/js/materialize",
                 "defaultExtension": "js"
             },
             'angular2-materialize': {
-                "main": "index",
-                "defaultExtension": "js"
-            },
-            'materialize': {
-                "main": "index",
+                "main": "dist/index",
                 "defaultExtension": "js"
             },
       rxjs: {
