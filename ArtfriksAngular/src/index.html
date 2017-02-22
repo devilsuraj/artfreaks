@@ -1,0 +1,36 @@
+<html>
+  <head>
+     <title>ArtFreaks</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/materialize.css" type="text/css">
+      <link href="/css/menu.css" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/a329414e7c.css" media="all" rel="stylesheet">
+       <link href="/css/Header.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+   
+    <!-- Polyfill(s) for older browsers -->
+   
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+   <script src="https://use.fontawesome.com/a329414e7c.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="/js/materialize.js"></script>
+    <script src="systemjs.config.js"></script>
+    <script>
+   
+       System.import('app/vendor').then(function() {
+          System.import('main').catch(function(err){ console.error(err); });
+      });
+    </script>
+  </head>
+
+  <body>
+ 
+
+     <div id="content"></div>
+
+    <div class="hiddendiv common"></div><div class="drag-target" style="left: 0px; touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
+
+  </body>
+</html>
