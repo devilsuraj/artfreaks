@@ -23,8 +23,8 @@
     "minify": "uglifyjs dist/bundle.js --screw-ie8 --compress --mangle --output dist/bundle.min.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "GUS",
+  "author": "Suraj Lokhande",
+  "license": "MIT",
   "dependencies": {
     "@angular/common": "~2.4.0",
     "@angular/compiler": "~2.4.0",

@@ -1,6 +1,7 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {SharedModule,routing} from './shared/sharedmodule'
+import {SharedModule} from './shared/sharedmodule'
+import {MODULE_ROUTES} './shared/routes/routes';
 import { HttpModule} from '@angular/http';
 import { FormsModule }    from '@angular/forms';
 import { AppComponent }   from './app.component';
@@ -11,6 +12,7 @@ import { JwtHelper } from 'angular2-jwt';
 import {ServiceModule} from './services/servicemodule';
 import {loader} from './shared/loader/loader';
 import { ModuleWithProviders } from '@angular/core';
+export const routing: ModuleWithProviders = RouterModule.forRoot(MODULE_ROUTES);
 @NgModule({
   imports:      [ BrowserModule,
                   HttpModule, 
@@ -18,7 +20,8 @@ import { ModuleWithProviders } from '@angular/core';
                   AccountModule,
                   SharedModule,
                   ServiceModule,
-                  routing
+                  routing,
+                  
                    ],
   declarations: [ AppComponent,MaterializeDirective ],
   bootstrap:    [ AppComponent ]
