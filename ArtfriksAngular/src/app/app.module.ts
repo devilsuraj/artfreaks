@@ -6,6 +6,7 @@ import { HttpModule} from '@angular/http';
 import { FormsModule }    from '@angular/forms';
 import { AppComponent }   from './app.component';
 import {AccountModule} from './account/accountmodule';
+import {ArtModule} from './artwork/artmodule';
 import { RouterModule, CanActivate  }   from '@angular/router';
 import { MaterializeDirective } from "angular2-materialize";
 import { JwtHelper } from 'angular2-jwt';
@@ -20,8 +21,9 @@ export const routing: ModuleWithProviders = RouterModule.forRoot(MODULE_ROUTES);
                   AccountModule,
                   SharedModule,
                   ServiceModule,
+                  ArtModule,
                   routing,
-                  
+              
                    ],
   declarations: [ AppComponent,MaterializeDirective ],
   bootstrap:    [ AppComponent ]

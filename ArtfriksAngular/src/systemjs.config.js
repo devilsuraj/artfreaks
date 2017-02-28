@@ -4,7 +4,7 @@
  */
 (function (global) {
   System.config({
-      "defaultJSExtensions": true,
+    "defaultJSExtensions": true,
     paths: {
       // paths serve as alias
       'npm:': 'node_modules/'
@@ -23,29 +23,44 @@
       '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
-           'angular2-jwt': 'npm:angular2-jwt/angular2-jwt.js',
-            "materialize-css": "npm:materialize-css",
-            "angular2-materialize": "npm:angular2-materialize",
-            "angular2-google-map-auto-complete":"npm:angular2-google-map-auto-complete",
-      
-      
+      'angular2-jwt': 'npm:angular2-jwt/angular2-jwt.js',
+      "materialize-css": "npm:materialize-css",
+      "angular2-materialize": "npm:angular2-materialize",
+      "angular2-google-map-auto-complete": "npm:angular2-google-map-auto-complete",
+      "angular2-image-upload":"npm:angular2-image-upload",
+      "file-droppa":"npm:file-droppa",
+      'dropzone': '/js/dropzone',
+      'ng2-imageupload': 'npm:ng2-imageupload',
       // other libraries
-      'rxjs':                      'npm:rxjs',
+      'rxjs': 'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
       app: {
         defaultExtension: 'js'
-      },    'materialize-css': {
-                "format": "global",
-                "main": "dist/js/materialize",
-                "defaultExtension": "js"
-            },
-            'angular2-materialize': {
-                "main": "dist/index",
-                "defaultExtension": "js"
-            },
+      },
+       'materialize-css': { 
+        "format": "global",
+        "main": "dist/js/materialize",
+        "defaultExtension": "js"
+      },
+       'angular2-image-upload': {
+        "main": "index",
+        "defaultExtension": "js"
+      },
+    'ng2-imageupload': {
+              main: 'index.js',
+              defaultExtension: 'js'
+          },
+      'angular2-materialize': {
+        "main": "dist/index",
+        "defaultExtension": "js"
+      },
+       'file-droppa': {
+        "main": "index",
+        "defaultExtension": "js"
+      },
       rxjs: {
         defaultExtension: 'js'
       }

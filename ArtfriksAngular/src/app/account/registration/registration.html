@@ -7,11 +7,46 @@
                 <div class="input-field col s12 m3 l3">
                     <span class="lable"> First Name<sup>*</sup></span>
                 </div>
+                <div class="input-field col s12 m3 l3">
+                    <input  class="validate box-style" required 
+                    [(ngModel)]="model.FirstName" name="FirstName"
+                    #FirstName="ngModel" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span> 
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <span class="lable"> Last Name<sup>*</sup></span>
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <input asp-for="LastName" class="validate box-style" required 
+                    [(ngModel)]="model.LastName" name="LastName"
+                    #LastName="ngModel" />
+                    <span asp-validation-for="LastName" class="text-danger"></span> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    
+                </div>
+                 <div class="input-field col s12 m4 l4">
+                    <form action="#">
+                        <input name="Male" type="radio" id="Male" class="with-gap" value="3" />
+                        <label style="font-size:18px;" for="Male">Male<sup style="color:crimson;">*</sup></label>
+                        <input name="Female" type="radio" id="Female" class="with-gap" value="4" />
+                        <label style="font-size:18px;" for="Female">Female<sup style="color:crimson;">*</sup></label>
+                       </form> 
+                </div>
+                 <div class="input-field col s12 m4 l5">
+                 </div>              
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    <span class="lable"> Profession<sup>*</sup></span>
+                </div>
                 <div class="input-field col s12 m9 l9">
-                    <input asp-for="FullName" class="validate box-style" required 
-                    [(ngModel)]="model.FullName" name="FullName"
-                    #FullName="ngModel" />
-                    <span asp-validation-for="FullName" class="text-danger"></span> 
+                    <input asp-for="Profession" class="validate box-style" required 
+                    [(ngModel)]="model.Profession" name="Profession"
+                    #Profession="ngModel" />
+                    <span asp-validation-for="Profession" class="text-danger"></span> 
                 </div>
             </div>
             <div class="row">
@@ -52,8 +87,16 @@
                     <span class="lable"> Address<sup>*</sup></span>
                 </div>
                 <div class="input-field col s12 m9 l9">
-                    <textarea  [(ngModel)]="model.address" name="address"
-                    #address="ngModel" required asp-for="Address" id="address" class="materialize-textarea validate box-style"></textarea>
+                    <input type="text"  
+                    [(ngModel)]="model.address" 
+                    name="address"
+                    #address="ngModel" 
+                    required  
+                    id="address" 
+                    class="materialize-textarea validate box-style"/>
+              
+                    <input type="text" (focus)="initAutocomplete()"  [(ngModel)]="model.address2" name="address2"
+                    #address2="ngModel" required id="google_places_ac" class="materialize-textarea validate box-style"/>
                     <span asp-validation-for="Address" class="text-danger"></span> 
                 </div>
             </div>

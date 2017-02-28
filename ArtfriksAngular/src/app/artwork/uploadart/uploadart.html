@@ -1,0 +1,186 @@
+<div class="container">
+    <div class="col s12 m12 l12">
+
+        <form class="col s12 m12 l12">
+            <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    <span class="lable"> Upload Artwork<sup>*</sup></span>
+                </div>
+                <div class="input-field col s12 m9 l9">
+                   <img src="{{server}}/WallImages/imagepath/thumb-{{ImagePath}}"/>
+                <fileDroppa
+                    [url]="server"
+                    [autoUpload]="true"
+                    [showFilesList]="true"
+                    [beforeRequest]="beforeRequest"
+                    [beforeFileUpload]="beforeFileUpload"
+                    [beforeAddFile]="beforeAddFile"
+                    (filesUpdated)="filesUpdated($event)"
+                    (fileUploaded)="fileUploaded($event)">
+               </fileDroppa>
+                                   
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    <span class="lable"> Title of Artwork<sup>*</sup></span>
+                </div>
+                <div class="input-field col s12 m9 l9">
+                    <input id="first_name" class="validate box-style1" type="text">
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    <span class="lable"> DIMENSIONS<sup>*</sup></span>
+                </div>
+                <div class="input-field col s12 m9 l9">
+                    <input id="dimenssion" maxlength="3" class="validate box-style tel-code left" type="text" style="display:inline;">                    <span class="left" style="margin-right:30px;"> X  </span>
+                    <input id="phone" maxlength="3" class="validate box-style tel-code right"
+                        type="text">
+
+
+                        <select class="dp browser-default">
+    <option value="" disabled="" selected="">cms</option>
+    <option value="1">cms</option>
+    <option value="2">inches</option>
+ 
+  </select>
+
+
+
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    <span class="lable"> Medium<sup>*</sup></span>
+                </div>
+                <div class="input-field col s12 m9 l9">
+                    <select class="browser-default dp ">
+    <option value="" disabled="" selected="">Oil on Canvas</option>
+    <option value="1">Oil on Canvas</option>
+    <option value="2">Acrylic on Canvas
+</option>
+ <option value="3">Water Colour
+
+</option>
+ <option value="4">Collage
+</option>
+<option value="4">Mixed Media
+</option>
+<option value="4">Other
+</option>
+ 
+  </select>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    <span class="lable"> Add Tags<sup>*</sup></span>
+                </div>
+                <div class="input-field col s12 m9 l9">
+                    <textarea id="tags" class="tags materialize-textarea validate box-style"></textarea>
+
+                </div>
+                <div class="col s12 m9 l9"> <span class="right" style="margin-right:90px;">Click to add tags. </span> <br>
+                    <span class="right" style="margin-right:90px;">Adding tags will make your artwork easily searchable.</span>
+                </div>
+
+
+
+
+            </div>
+            <div clas="row">
+                <div class="input-field col s12 m3 l3">
+
+                </div>
+                <div class="col s12 m9 l9">
+                    <div class="row"><a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Hyper Realistic</a>
+                        <a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Realism</a>
+
+                        <a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Portraiture</a>                        </div>
+                    <div class="row">
+                        <a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Black &amp; White</a>
+                        <a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Still Life</a>
+
+                        <a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Abstract</a>
+                    </div>
+
+                    <div class="row">
+                        <a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Geometric</a>
+                        <a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Pop Art</a>
+
+                        <a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Kitsch</a>
+                    </div>
+
+                    <div class="row">
+                        <a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Wild Life Fantasy</a>
+                        <a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Fantasy/Surreal</a>
+
+                        <a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Landscape</a>
+                    </div>
+
+                    <div class="row">
+                        <a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Snow Landscape </a>
+                        <a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Children</a>
+
+                        <a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Modern Contemporary</a>
+                    </div>
+
+                    <div class="row">
+                        <a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Florals/Flowers</a>
+                        <a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Birds</a>
+
+                        <a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Women Contemporary</a>
+                    </div>
+
+                    <div class="row">
+
+                        <a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Trees</a>
+
+                        <a class="waves-effect waves-light btn white black-text " style="border:1px solid #888888">Nature Contemporary</a>
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    <span class="lable"> Mandatory<sup>*</sup></span>
+                </div>
+                <div class="input-field col s12 m9 l9">
+
+                    <input class="with-gap red" name="group1" type="radio" id="test3">
+                    <label for="test3">Yes, this is my own artwork. I have right to publish and
+sell this work.</label>
+
+
+
+
+
+
+                </div>
+
+            </div>
+            <br>
+            <div class="row center">
+
+                <button class="waves-effect waves-light btn white black-text " [disabled]="!isimage" style="border-top:1px solid #ccc; border-bottom:1px solid #ccc; ">+ Submit</button>
+
+            </div>
+
+        </form>
+
+
+
+    </div>
+
+</div>

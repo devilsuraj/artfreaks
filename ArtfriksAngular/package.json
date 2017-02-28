@@ -41,7 +41,6 @@
     "core-js": "^2.4.1",
     "rxjs": "5.0.1",
     "zone.js": "^0.7.4",
-
     "@angular/upgrade": "~2.1.1",
 
     "angular2-google-maps": "^0.17.0",
@@ -52,7 +51,6 @@
   
     "materialize-css": "0.97.8",
     "reflect-metadata": "^0.1.8",
- 
     "systemjs-builder": "^0.16.0-alpha.1"
   
   },
@@ -60,7 +58,6 @@
     "concurrently": "^3.2.0",
     "lite-server": "^2.2.2",
     "typescript": "~2.0.10",
-
     "canonical-path": "0.0.2",
     "tslint": "^3.15.1",
     "lodash": "^4.16.4",
@@ -72,7 +69,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~4.0.14",
     "rimraf": "^2.5.4",
- "gulp": "^3.9.1",
+    "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-html-replace": "^1.6.1",
     "gulp-shell": "^0.5.2",
