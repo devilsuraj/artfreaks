@@ -9,7 +9,16 @@
 
 
 }
-
+@import url('../fonts/MyriadCondensedWeb.ttf');
+@font-face {
+    font-family: myFirstFont;
+    src: url('../fonts/MyriadCondensedWeb.ttf');
+}
+html{font-family:myFirstFont}
+h1 h4 label{font-family:myFirstFont;}
+.input-field span{font-family:myFirstFont; font-weight: bold; font-size:20px;  color: #000000; text-transform: uppercase;  }
+.input-field label{font-family:myFirstFont;  font-weight: bold; font-size:20px;  color: #000000; text-transform: uppercase;  }`],
+.lable{font-family: Myriad Condensed}
 .navigation ul {
   list-style-type: none;
   margin: 0;
@@ -106,7 +115,7 @@ text-align:left;
 
 /*::::::::::::::::*/
 .header-pos{ position:fixed; top:0; z-index:999; width:100%; background-color: #fff;}
-main{margin-top:130px; position:relative;}
+main{margin-top:10px; padding-top: 10px; border-top:5px solid #C80003; position:relative;}
 .container{max-width:1200px; width:75%}
 
 ul.social{margin:0;}
@@ -180,35 +189,43 @@ ul.social li a:hover{background-color:transparent;}
 /*::::::: userview artist :::::::::*/
 
 .navigation img{max-width: 100px; vertical-align: middle;}
-.navbar-fixed {height:80px;}
-nav ul{height:67px;}
+
+
 .fa {height:20px;}
 .navigation1 ul li label{float: right; margin-top: -49px;}
-nav .brand-logo img{max-width:320px;}
+
 
 @media only screen and (max-width:1200px){
-	.container{width:85%}
+	.container{width:90%}
 	}
 
 @media only screen and (min-width:993px) and (max-width:1024px) {
-	nav .brand-logo{width:35%; float:left;}	
-	.container{width:87%}
+
+	.container{width:94%}
 }
 	
 @media only screen and (max-width:992px) {
 	
 nav {padding:0px;}
-nav .brand-logo{width:85%; float:none; transform: translateX(0%); text-align:center;}
-main{margin-top: 80px;}	
+
+main{margin-top: 10px;}	
 }
 
-@media only screen and (max-width:767px) {
+@media only scree and (min-width:767px)  and (max-width:992px) {
+	
+nav {padding:0px;}
+ .container {
+        width: 100%;
+    }
+main{margin-top: 10px;}	
+}
+@media only screen and (min-width:460px)  and (max-width:767px) {
     main {
-        margin-top: 80px;
+        margin-top: 10px;
     }
 
     .container {
-        width: 94%;
+        width: 100%;
     }
 
     .navigation {

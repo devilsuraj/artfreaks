@@ -1,6 +1,8 @@
-
+    <div class="col s11 m11 l8 offset-l2 offset-m1 offset-s1">
     <div *ngIf="!OTP" class="row" id="reg" [@cardauth]>
-        <h4 class="center red-text" style="font-family:MyriadPro Cond;"> Registration </h4>
+     <h4 class="center" style="font-family:myFirstFont"> <b>Register/ Sign in</b> </h4>
+    
+     <br/>
         <form (ngSubmit)="userRegister(otpform.value)" #otpform="ngForm">
             <div asp-validation-summary="All" class="text-danger"></div>
              <div class="row">
@@ -28,12 +30,26 @@
                     
                 </div>
                  <div class="input-field col s12 m4 l4">
-                    <form action="#">
-                        <input name="Male" type="radio" id="Male" class="with-gap" value="3" />
-                        <label style="font-size:18px;" for="Male">Male<sup style="color:crimson;">*</sup></label>
-                        <input name="Female" type="radio" id="Female" class="with-gap" value="4" />
+                   
+
+           <div class="row"  style="font-family:myFirstFont">
+               
+                 <div class="input-field col m6">
+                   <!--form deleted  Use only one form on page--> 
+                        <input name="Male"  (click)="this.model.Gender='Male'" type="radio" group="a" id="Male" class="with-gap" value="Male" />
+                        <label style="font-size:18px;" for="Male">Male<sup style="color:crimson;">*</sup></label>                      
+                   
+                </div>
+                <div class="input-field col m6">
+                  
+                        <input name="Male" (click)="this.model.Gender='Female'" type="radio"  group="a" id="Female" class="with-gap" value="Female" />
                         <label style="font-size:18px;" for="Female">Female<sup style="color:crimson;">*</sup></label>
-                       </form> 
+                       
+                </div>
+                            
+            </div>
+
+
                 </div>
                  <div class="input-field col s12 m4 l5">
                  </div>              
@@ -176,4 +192,5 @@
         Thank you
             </h1><h3> for registering with artfreaks we will let you know once we are ready to serve you!</h3>
 
+    </div>
     </div>

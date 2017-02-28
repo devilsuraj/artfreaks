@@ -21,6 +21,7 @@
     "lint": "tslint ./src/**/*.ts -t verbose",
     "build_prod": "npm run  browserify -s  src/main.js > dist/bundle.js && npm run minify",
     "minify": "uglifyjs dist/bundle.js --screw-ie8 --compress --mangle --output dist/bundle.min.js"
+    
   },
   "keywords": [],
   "author": "Suraj Lokhande",
@@ -51,8 +52,9 @@
   
     "materialize-css": "0.97.8",
     "reflect-metadata": "^0.1.8",
-    "systemjs-builder": "^0.16.0-alpha.1"
-  
+    "systemjs-builder": "^0.16.0-alpha.1",
+  "file-droppa":"*",
+  "ng2-imageupload":"*"
   },
   "devDependencies": {
     "concurrently": "^3.2.0",

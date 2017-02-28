@@ -6,7 +6,11 @@ declare var google: any;
 @Component({
     selector: 'registration',
     templateUrl: './app/account/registration/registration.html',
-    animations: [
+    /*styles:[`
+
+.input-field span{font-family: MyriadPro-Condensed, sans-serif; font-style: normal; font-size:18px; font-weight:100; color: #000000; text-transform: uppercase;  }
+.input-field label{font-family: MyriadPro-Condensed, sans-serif; font-style: normal; font-size:18px; font-weight:100; color: #000000; text-transform: uppercase;  }`],
+    */animations: [
         trigger('cardauth', [
             state('*', style({
                 '-ms-transform': 'translate3D(0px, 0px, 0px)',
@@ -147,18 +151,28 @@ export class registration {
     }
 
     initAutocomplete() {
-        var instance = this, autocomplete;;
+        var instance = this, autocomplete;
         instance.input = document.getElementById('google_places_ac');
         autocomplete = new google.maps.places.Autocomplete(instance.input);
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
             var place = autocomplete.getPlace();
-               if (place.address_components[i].types[j] == "postal_code") {
+              for (var i = 0; i < place.address_components.length; i++) {
+                for (var j = 0; j < place.address_components[i].types.length; j++) {
+                    if (place.address_components[i].types[j] == "postal_code") {
+                    this.model.PinCode = place.address_components[i].long_name;
+                }
+                  if (place.address_components[i].types[j] == "country") {
+                    this.model.Country = place.address_components[i].long_name;
+                }
+                  if (place.address_components[i].types[j] == "administrative_area_level_1") {
+                    this.model.State = place.address_components[i].long_name;
+                }
+                  if (place.address_components[i].types[j] == "administrative_area_level_2") {
+                    this.model.City = place.address_components[i].long_name;
+                    }
+                }
+                }
 
-          document.getElementById('postal_code').innerHTML = place.address_components[i].long_name;
-
-
-
-        }
             instance.model.Longitude = place.geometry.location.lat();
             instance.model.Latitude = place.geometry.location.lng();
             instance.model.FormattedAddress=place.formatted_address;
@@ -166,7 +180,7 @@ export class registration {
             console.log(place.formatted_address);
             console.log(place.formatted_address.indexOf("Pune"));
             console.log(place);
-        }
+        });
     
         }
 }

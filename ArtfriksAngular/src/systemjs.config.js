@@ -29,7 +29,6 @@
       "angular2-google-map-auto-complete": "npm:angular2-google-map-auto-complete",
       "angular2-image-upload":"npm:angular2-image-upload",
       "file-droppa":"npm:file-droppa",
-      'dropzone': '/js/dropzone',
       'ng2-imageupload': 'npm:ng2-imageupload',
       // other libraries
       'rxjs': 'npm:rxjs',
