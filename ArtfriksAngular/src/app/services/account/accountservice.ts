@@ -25,6 +25,7 @@ export class authservice {
 
     private refreshParams = "grant_type=refresh_token" + // refresh tokens when access_tokens are expired simply renew em!
     "&refresh_token=" + localStorage.getItem("refresh_key") +
+    "&client_id=myClient"+
     "&scope=offline_access profile email roles"; // get refresh token stored when logged in 
 
 
@@ -68,8 +69,8 @@ export class authservice {
             .catch(this.handleError)
     }
 
-    sendotp(username:any): Observable<result> {
-       return this.http.post(this._authUrl + "/api/account/sendOtp?username="+username ,this.options)
+    sendotp(email:any,CountryCode,username:any): Observable<result> {
+       return this.http.post(this._authUrl + "/api/account/sendOtp?email="+email+"&countrycode="+CountryCode+"&username="+username ,this.options)
             .map(res => <result>res.json())
             .catch(this.handleError)
     }

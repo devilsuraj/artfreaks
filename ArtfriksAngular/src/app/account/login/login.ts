@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { logModel, registerModel, token, Regresult, result, ChangePasswordViewModel, parmmode } from '../../models/account/authmodel';
 import { AuthLoginService, SharedUserDetailsModel } from '../../services/account/shareduserdetails';
 import { Subscription } from 'rxjs/Subscription';
+import * as Materialize from "angular2-materialize";
 declare var $:any, System:any, demo:any;
 @Component({
     moduleId: module.id,
@@ -91,7 +92,7 @@ export class loginComponent {
             error => {
                 console.log(error);
                 this.isloading = false;
-             demo.showNotification('bottom', 'center',  error.error_description  );
+           Materialize.toast(  error.error_description ,3000 );
             })
     }
 
@@ -107,7 +108,7 @@ export class loginComponent {
                 this._parentRouter.navigate(['/']);
             },
             Error => {
-            demo.showNotification('bottom', 'center',  Error.error  );
+                 Materialize.toast( Error.error,3000  );
             })
     }
 
@@ -119,7 +120,7 @@ export class loginComponent {
             this.sharedUserDetailsModel.username = data.user[0].fullName;
             this.sharedUserDetailsModel.isLoggedIn = true;
             this.authLoginService.broadcastTextChange(this.sharedUserDetailsModel);
-              demo.showNotification('bottom', 'center', "Welcome " + data.user[0].fullName );
+               Materialize.toast("Welcome " + data.user[0].fullName,3000 );
         },
             error => {
                 if (localStorage.getItem('refresh_key')) { // check if refresh key is present it wont be present for external logged in users
@@ -138,7 +139,7 @@ export class loginComponent {
             localStorage.removeItem("refresh_key");
             this._parentRouter.navigate(['/']);
             this.isLoggedin = false;
-                  demo.showNotification('bottom', 'center', "User Logged out Added Successfully");
+                    Materialize.toast("User Logged out Added Successfully",1000);
         }, error => {
 
          });
