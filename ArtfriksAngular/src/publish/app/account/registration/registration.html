@@ -1,17 +1,68 @@
-
-    <div *ngIf="!OTP" class="row" id="reg" [@cardauth]>
-        <h4 class="center red-text" style="font-family:MyriadPro Cond;"> Registration </h4>
-        <form (ngSubmit)="userRegister(otpform.value)" #otpform="ngForm">
+    <div class="col s11 m11 l8 offset-l2 offset-m1 offset-s1">
+    <div *ngIf="!OTP"  class="row" id="reg" [@cardauth]>
+     <h4 class="center" style="font-family:myFirstFont"> <b>Register/ Sign in</b> </h4>
+    
+     <br/>
+        <form (ngSubmit)="userRegister(model)" #otpform="ngForm">
             <div asp-validation-summary="All" class="text-danger"></div>
              <div class="row">
                 <div class="input-field col s12 m3 l3">
                     <span class="lable"> First Name<sup>*</sup></span>
                 </div>
+                <div class="input-field col s12 m3 l3">
+                    <input  class="validate box-style" required 
+                    [(ngModel)]="model.FirstName" name="FirstName"
+                    #FirstName="ngModel" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span> 
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <span class="lable"> Last Name<sup>*</sup></span>
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <input asp-for="LastName" class="validate box-style" required 
+                    [(ngModel)]="model.LastName" name="LastName"
+                    #LastName="ngModel" />
+                    <span asp-validation-for="LastName" class="text-danger"></span> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    
+                </div>
+                 <div class="input-field col s12 m4 l4">
+                   
+
+           <div class="row"  style="font-family:myFirstFont">
+               
+                 <div class="input-field col m6">
+                   <!--form deleted  Use only one form on page--> 
+                        <input name="male" [(ngModel)]="model.gender" required   type="radio" group="a" id="Male" class="with-gap" value="Male" />
+                        <label style="font-size:18px;" for="Male">Male<sup style="color:crimson;">*</sup></label>                      
+                   
+                </div>
+                <div class="input-field col m6">
+                  
+                        <input name="male" [(ngModel)]="model.gender"   type="radio"  group="a" id="Female" class="with-gap" value="Female" />
+                        <label style="font-size:18px;" for="Female">Female<sup style="color:crimson;">*</sup></label>
+                       
+                </div>
+                            
+            </div>
+
+
+                </div>
+                 <div class="input-field col s12 m4 l5">
+                 </div>              
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    <span class="lable"> Profession<sup>*</sup></span>
+                </div>
                 <div class="input-field col s12 m9 l9">
-                    <input asp-for="FullName" class="validate box-style" required 
-                    [(ngModel)]="model.FullName" name="FullName"
-                    #FullName="ngModel" />
-                    <span asp-validation-for="FullName" class="text-danger"></span> 
+                    <input asp-for="Profession" class="validate box-style" required 
+                    [(ngModel)]="model.Profession" name="Profession"
+                    #Profession="ngModel" />
+                    <span asp-validation-for="Profession" class="text-danger"></span> 
                 </div>
             </div>
             <div class="row">
@@ -34,9 +85,9 @@
                 </div>
                 <div class="input-field col s12 m6 l6">
                     <input asp-for="CountryCode"  [(ngModel)]="model.CountryCode" name="CountryCode"
-                    #CountryCode="ngModel"required  maxlength="3" type="tel" class="validate box-style tel-code" style="float:left" />
+                    #CountryCode="ngModel"required  maxlength="3" type="number" class="validate box-style tel-code" style="float:left" />
                      <input asp-for="Phone" required [(ngModel)]="model.Phone" name="Phone"
-                    #Phone="ngModel" type="tel" class="validate box-style tel-num" style="float:left" />
+                    #Phone="ngModel" type="number" class="validate box-style tel-num" style="float:left" />
                 </div>
                 <div class="input-field col s12 m3 l3">
                     <input asp-for="OTPfrom" class="with-gap red radio-bt" value="1" name="group1" type="radio" id="test3">
@@ -52,13 +103,21 @@
                     <span class="lable"> Address<sup>*</sup></span>
                 </div>
                 <div class="input-field col s12 m9 l9">
-                    <textarea  [(ngModel)]="model.address" name="address"
-                    #address="ngModel" required asp-for="Address" id="address" class="materialize-textarea validate box-style"></textarea>
+                    <input type="text"  
+                    [(ngModel)]="model.address" 
+                    name="address"
+                    #address="ngModel" 
+                    required  
+                    id="address" 
+                    class="materialize-textarea validate box-style"/>
+              
+                    <input type="text" (focus)="initAutocomplete()"  [(ngModel)]="model.address2" name="address2"
+                    #address2="ngModel" required id="google_places_ac" class="materialize-textarea validate box-style"/>
                     <span asp-validation-for="Address" class="text-danger"></span> 
                 </div>
             </div>
         <loader [hidden]="!isloading"></loader>
-            <button class="waves-effect waves-light btn right white black-text"  [disabled]="!otpform.form.valid" [disabled]="isloading"  style="border-top:1px solid #ccc; border-bottom:1px solid #ccc;"  ><i class="material-icons right">fast_forward</i> {{onebtnText}}</button>
+            <button class="waves-effect waves-light btn right white black-text" type="submit"  [disabled]="!otpform.form.valid" [disabled]="isloading"  style="border-top:1px solid #ccc; border-bottom:1px solid #ccc;"  ><i class="material-icons right">fast_forward</i> {{onebtnText}}</button>
           </form>
     </div> <!-- /registartion ends-->
     <!--:::::::: OTP DIV::::::::::  -->
@@ -68,7 +127,7 @@
 
 
 <!--:::::::: OTP DIV::::::::::  -->
-<div *ngIf="OTP" class="row" id="otp"  [@cardauth]>
+<div *ngIf="OTP" [hidden]="last" class="row" id="otp"  [@cardauth]>
     <h4 class="center red-text" style="font-family:MyriadPro Cond;"> Registration confirmation </h4>
     <form class="col s12" (ngSubmit)="putUser(updatemodel)" #confirmform="ngForm">
 
@@ -123,7 +182,7 @@
         </div>
         <loader [hidden]="!isloading"></loader>
         <a class="waves-effect waves-light btn left white black-text"     (click)="isOTP()"  ><i class="material-icons left" >fast_rewind</i>Back</a>
-        <a class="waves-effect waves-light btn left white black-text" (click)="sendOTP(model.phone)">Resend OTP</a>
+        <a class="waves-effect waves-light btn left white black-text" (click)="sendOTP(updatemodel)">Resend OTP</a>
         <button type="submit" class="waves-effect waves-light btn right white black-text" [disabled]="!confirmform.valid"    style="border-top:1px solid #ccc; border-bottom:1px solid #ccc;" ><i class="material-icons right">fast_forward</i>Next</button>
     </form>
 </div>  <!-- / otp ends-->
@@ -133,4 +192,5 @@
         Thank you
             </h1><h3> for registering with artfreaks we will let you know once we are ready to serve you!</h3>
 
+    </div>
     </div>

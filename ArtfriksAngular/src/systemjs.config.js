@@ -30,6 +30,7 @@
       "angular2-image-upload":"npm:angular2-image-upload",
       "file-droppa":"npm:file-droppa",
       'ng2-imageupload': 'npm:ng2-imageupload',
+          'ng2-auto-complete':'npm:ng2-auto-complete',
       // other libraries
       'rxjs': 'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
@@ -55,6 +56,10 @@
       'angular2-materialize': {
         "main": "dist/index",
         "defaultExtension": "js"
+      },
+        'ng2-auto-complete':{
+      main: 'dist/ng2-auto-complete.umd.js', 
+      defaultExtension: 'js'
       },
        'file-droppa': {
         "main": "index",

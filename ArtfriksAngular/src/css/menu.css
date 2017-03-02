@@ -86,7 +86,7 @@ text-align:left;
 
 .navigation1 li:first-child:hover a { border-radius: 1px 0 0 1px; }
 
-.navigation1 li ul.dropdown li:hover a { background: #; text-align:left; color:#FD0004; }
+.navigation1 li ul.dropdown li:hover a {  text-align:left; color:#FD0004; }
 
 .navigation1 li ul.dropdown li:first-child:hover a { border-radius: 0; }
 

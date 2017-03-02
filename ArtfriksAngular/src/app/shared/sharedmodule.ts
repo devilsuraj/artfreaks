@@ -10,6 +10,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import {ImageModule} from './image/image';
 import{AppComponent} from '../app.component';
 import { ModuleWithProviders } from '@angular/core';
+
+import {tag} from './tag/tag';
 @NgModule({
     imports: [
         BrowserModule,
@@ -18,8 +20,8 @@ import { ModuleWithProviders } from '@angular/core';
         RouterModule,
         CommonModule 
         ],
-        declarations: [ header,footer,loader,ImageModule ],
-        exports:[header,footer,loader]
+        declarations: [ header,footer,loader,ImageModule,tag ],
+        exports:[header,footer,loader,tag]
 })
 
 export class SharedModule {}

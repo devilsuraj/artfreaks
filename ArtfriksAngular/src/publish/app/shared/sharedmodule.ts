@@ -10,22 +10,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import {ImageModule} from './image/image';
 import{AppComponent} from '../app.component';
 import { ModuleWithProviders } from '@angular/core';
-import {registration} from '../account/registration/registration';
+
+import {tag} from './tag/tag';
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
         RouterModule,
-        CommonModule ],
-        declarations: [ header,footer,loader,ImageModule ],
-        exports:[header,footer,loader]
+        CommonModule 
+        ],
+        declarations: [ header,footer,loader,ImageModule,tag ],
+        exports:[header,footer,loader,tag]
 })
 
 export class SharedModule {}
 
-export const MODULE_ROUTES: Route[] =[
-    { path: '', pathMatch: 'full' , component: registration },
 
-]
-export const routing: ModuleWithProviders = RouterModule.forRoot(MODULE_ROUTES);

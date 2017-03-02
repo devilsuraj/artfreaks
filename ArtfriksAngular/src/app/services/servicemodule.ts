@@ -9,7 +9,8 @@ import {authservice} from './account/accountservice';
 import {AuthLoginService} from './account/shareduserdetails';
 import {Configuration} from './app/app.config';
 import {artservice} from './artwork/artservice';
+import {AuthGuard} from './account/authguard';
 @NgModule({
-  providers:[authservice ,artservice ,Configuration,AuthLoginService]
+  providers:[authservice ,artservice ,Configuration,AuthLoginService,AuthGuard]
 })
 export class ServiceModule { }

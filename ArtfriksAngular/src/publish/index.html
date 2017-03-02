@@ -10,18 +10,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
    
-   <!-- Polyfill(s) for older browsers -->
-      <script src="js/shim.min.js"></script>
-
-    <script src="js/zone.js"></script>
-    <script src="js/system.src.js"></script>
+    <!-- Polyfill(s) for older browsers -->
+   
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
    <script src="https://use.fontawesome.com/a329414e7c.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="/js/materialize.js"></script>
-  
-
-    
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+       <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwZJ6uHeE6rb-ZAd_wERt8BfESI3yxamo&types=geocode&libraries=places"></script>
  
+     <script src="node_modules/core-js/client/shim.min.js"></script>
+
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('main.js').catch(function(err){ console.error(err); });
+    </script>
   </head>
 
   <body>
@@ -30,6 +34,6 @@
      <div id="content"></div>
 
     <div class="hiddendiv common"></div><div class="drag-target" style="left: 0px; touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
-<script src="app.js.gz"></script>
+
   </body>
 </html>
