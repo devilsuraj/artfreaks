@@ -9,6 +9,7 @@ import {SharedModule} from '../shared/sharedmodule';
 import {loginComponent} from './login/login';
 import { ModuleWithProviders } from '@angular/core';
 import { JwtHelper, AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
+import {ImageModule} from '../shared/image/image'
 
 @NgModule({
     imports: [
@@ -19,7 +20,7 @@ import { JwtHelper, AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
         RouterModule,
         CommonModule 
         ],
-        declarations: [ registration,loginComponent ],
+        declarations: [ registration,loginComponent ,ImageModule],
         exports:[registration],
         providers:[JwtHelper]
 })

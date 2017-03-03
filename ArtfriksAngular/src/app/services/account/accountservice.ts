@@ -33,7 +33,7 @@ export class authservice {
         if (localStorage.getItem("auth_key")) {
             this.authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") });
             this.Authoptions = new RequestOptions({ headers: this.authheaders });
-            return this.http.get(this._authUrl + "/api/misc/getUserInfo", this.Authoptions)
+            return this.http.get(this._authUrl + "/user/userinfo", this.Authoptions)
                 .map(res => <any>res.json())
                 .catch(this.handleError);
         }
@@ -64,7 +64,11 @@ export class authservice {
     }
 
     refreshLogin(): Observable<token> {
-        return this.http.post(this._authUrl + "/connect/verifycode", this.refreshParams, this.options)
+      let refreshParams = "grant_type=refresh_token" + // refresh tokens when access_tokens are expired simply renew em!
+    "&refresh_token=" + localStorage.getItem("refresh_key") +
+    "&client_id=myClient"+
+    "&scope=offline_access profile email roles";
+        return this.http.post(this._authUrl + "/connect/verifycode", refreshParams, this.options)
             .map(res => <token>res.json())
             .catch(this.handleError)
     }

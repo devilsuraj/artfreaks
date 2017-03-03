@@ -48563,9 +48563,12 @@ $__System.registerDynamic("23", ["c"], true, function ($__require, exports, modu
         function Configuration() {
             //public Server: string = "http://localhost:5000"//;//
             //public FileServer: string = "http://localhost:5000";//
-            this.Server = "http://localhost:2822"; //;//
-            this.FileServer = "http://localhost:2822"; //
-            this.ImageServer = "http://localhost:2822"; //*/
+            /*  public Server: string = "http://localhost:2822"//;//
+              public FileServer: string = "http://localhost:2822";//
+               public ImageServer: string = "http://localhost:2822";//*/
+            this.Server = "http://base.kmtrt.in"; //
+            this.FileServer = "http://base.kmtrt.in"; //
+            this.ImageServer = "http://base.kmtrt.in"; //*/
         }
         Configuration = __decorate([core_1.Injectable(), __metadata('design:paramtypes', [])], Configuration);
         return Configuration;

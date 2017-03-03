@@ -1,5 +1,6 @@
 import { Component, OnInit, trigger, state, style, transition, animate, keyframes, group } from '@angular/core';
 import { authservice } from '../../services/account/accountservice';
+import { artservice } from '../../services/artwork/artservice';
 import * as Materialize from "angular2-materialize";
 import { Router } from '@angular/router';
 declare var google: any;
@@ -36,18 +37,28 @@ declare var google: any;
     ]
 })
 export class registration {
-    constructor(private _parentRouter: Router, private _authservice: authservice) { }
+    constructor(private _parentRouter: Router, private _authservice: authservice, private artservice:artservice) { 
+        this.getProfession();
+    }
     OTP: boolean = false;
-    model: user=new user() ;
+    model: any={} ;
     public input: any;
     updatemodel: any = [];
     last: boolean = false;
     onebtnText: string = "Next";
     isloading: boolean = false;
-    ngOnInit() {
-
+    ProfessionList:any=[];
+   
+    getProfession() {
+        this.isloading = true;
+        this.artservice.getProfession().subscribe(x => {
+            console.log(x);
+            this.ProfessionList = x;
+            this.isloading = false;
+        }, error => {
+            console.log(error);
+        });
     }
-
     public userRegister(creds: any) {
         if(this.check)
         {
@@ -92,6 +103,7 @@ export class registration {
             },
             error => {
                 if (error === "401") {
+                         this.isloading = false;
                     this.handleError(error); this.onebtnText = "Next";
                 }
                 else
@@ -99,11 +111,14 @@ export class registration {
                 this.isloading = false; this.onebtnText = "Next";
             });
         }else{
+                 this.isloading = false;
              Materialize.toast("Please select Gender .", 3000);
                
         }
     }
-
+check(){
+    return true;
+}
     public putUser(username: any) {
         this.isloading = true;
         this._authservice.putUser(username).subscribe(data => {
@@ -171,15 +186,15 @@ export class registration {
         }
     }
 
-        check(){
-            var radios = document.getElementsByName("male");
+       /* check(){
+            var radios = (<HTMLInputElement>document.getElementsByName("male"));
             for (var i = 0, len = radios.length; i < len; i++) {
                 if (radios[i].type == 'radio' && radios[i].checked) {
                     return true;
                 }
             }
             return false;
-        }
+        }*/
 
     initAutocomplete() {
         var instance = this, autocomplete;
@@ -217,4 +232,14 @@ export class registration {
         }
 }
 
-export class user{}
+export class user{
+    Longitude:any;
+    Latitude:any;
+    FormattedAddress:any;
+    City:any;
+    State:any;
+    Country:any;
+    PinCode:any;
+    FirstName:any;
+    LastName:any;
+}

@@ -84,6 +84,14 @@ text-align:left;
  
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
 .navigation li ul.dropdown li:last-child a { color:#000; border-bottom: none; }
 
 .navigation li:hover a {

@@ -7,7 +7,7 @@ import {loader} from './loader/loader';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
-import {ImageModule} from './image/image';
+
 import{AppComponent} from '../app.component';
 import { ModuleWithProviders } from '@angular/core';
 
@@ -20,7 +20,7 @@ import {tag} from './tag/tag';
         RouterModule,
         CommonModule 
         ],
-        declarations: [ header,footer,loader,ImageModule,tag ],
+        declarations: [ header,footer,loader,tag ],
         exports:[header,footer,loader,tag]
 })
 
