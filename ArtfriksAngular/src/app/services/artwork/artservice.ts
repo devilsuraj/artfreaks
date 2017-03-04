@@ -28,7 +28,7 @@ export class artservice {
         if (localStorage.getItem("auth_key")) {
             let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") });
             let Authoptions = new RequestOptions({ headers: authheaders });
-            return this.http.get(this._authUrl + "/artowrk/getAll", this.joptions)
+            return this.http.get(this._authUrl + "/api/artowrk/getAll", this.joptions)
                 .map(res => <any>res.json())
                 .catch(this.handleError);
         }
@@ -53,7 +53,7 @@ export class artservice {
         }
     }
 
-       getMediums(): Observable<any> {
+    getMediums(): Observable<any> {
         if (localStorage.getItem("auth_key")) {
             let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") });
             let Authoptions = new RequestOptions({ headers: authheaders });
@@ -63,7 +63,7 @@ export class artservice {
         }
     }
 
-  
+
 
     getUnits(): Observable<any> {
         if (localStorage.getItem("auth_key")) {
@@ -76,9 +76,9 @@ export class artservice {
     }
 
     getProfession(): Observable<any> {
-            return this.http.get(this._authUrl + "/api/artowrk/Profession", this.joptions)
-                .map(res => <any>res.json())
-                .catch(this.handleError);
+        return this.http.get(this._authUrl + "/api/artowrk/Profession", this.joptions)
+            .map(res => <any>res.json())
+            .catch(this.handleError);
     }
 
 
@@ -87,7 +87,7 @@ export class artservice {
         if (localStorage.getItem("auth_key")) {
             let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") });
             let Authoptions = new RequestOptions({ headers: authheaders });
-            return this.http.get(this._authUrl + "/artowrk/GetById?id=" + Id, this.joptions)
+            return this.http.get(this._authUrl + "/api/artowrk/GetById?id=" + Id, this.joptions)
                 .map(res => <any>res.json())
                 .catch(this.handleError);
         }
@@ -96,13 +96,27 @@ export class artservice {
     uploadArt(Param: any): Observable<any> {
         let body = JSON.stringify(Param);
         if (localStorage.getItem("auth_key")) {
-            let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") ,'Content-Type': 'application/json'});
+            let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key"), 'Content-Type': 'application/json' });
             let Authoptions = new RequestOptions({ headers: authheaders });
             return this.http.post(this._authUrl + "/api/artowrk/postArt", body, Authoptions)
                 .map(res => <any>res.json())
                 .catch(this.handleError);
         }
     }
+    postArt(Param: any): Observable<any> {
+        let body = JSON.stringify(Param);
+        return this.http.post(this._authUrl + "/api/artowrk/PostTags", body, this.joptions)
+            .map(res => <any>res.json())
+            .catch(this.handleError);
+    }
+
+    removeArt(Param: any): Observable<any> {
+        let body = JSON.stringify(Param);
+        return this.http.post(this._authUrl + "/api/artowrk/RemoveTags", body, this.joptions)
+            .map(res => <any>res.json())
+            .catch(this.handleError);
+    }
+
     private handleError(error: any): Promise<any> {
         if (error.status === 401) {
             return Promise.reject("401");
@@ -111,6 +125,6 @@ export class artservice {
         return Promise.reject(error.message || error.json());
     }
 
-    
+
 
 }

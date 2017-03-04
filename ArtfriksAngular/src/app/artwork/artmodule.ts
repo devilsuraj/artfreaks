@@ -33,6 +33,6 @@ import {AuthGuard} from '../services/account/authguard';
 export class ArtModule {}
 export const ArtworkRoutes =[
     { path: 'uploadart', pathMatch: 'full' , component: uploadartwork, canActivate:[AuthGuard]  },
-
+    { path: 'artwork', pathMatch: 'full' , component: artwork  },
 
 ]

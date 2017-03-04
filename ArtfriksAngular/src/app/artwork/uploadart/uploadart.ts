@@ -3,6 +3,8 @@ import { artservice } from '../../services/artwork/artservice';
 import { Configuration } from '../../services/app/app.config';
 import { Router } from '@angular/router';
 import {authservice} from '../../services/account/accountservice';
+import * as Materialize from "angular2-materialize";
+declare var $:any;
 @Component({
     moduleId: module.id,
     selector: 'uploadart',
@@ -48,6 +50,7 @@ export class uploadartwork {
     unitList:any=[];
     MediumsList:any=[];
     posttag:tags[]=[];
+    PostTags:PostTags[]=[];
     constructor(private artservice: artservice, 
     private config: Configuration, 
     private authervice:authservice,
@@ -68,6 +71,7 @@ export class uploadartwork {
         console.log(tag);
         this.posttag.push(tag);
         console.log(this.posttag.length);
+        $('#auto').val('');
     }
 
     server = this.config.Server + "/picture/save";
@@ -84,16 +88,33 @@ export class uploadartwork {
         }
     }
     uploadart(art:any){
+        if(this.posttag.length>0){
           this.isloading = true;
           art.PictureUrl= this.ImagePath;
         this.artservice.uploadArt(art).subscribe(x => {
             console.log(x);
-            this.isloading = false;
+        
+            for (let entry of this.posttag) 
+            {
+                    this.PostTags.push({artId:x.id,tagId:entry.id})
+            }
+               this.artservice.postArt(this.PostTags).subscribe(x => {
+                    Materialize.toast(x.message);
+                        this.isloading = false;
+               }
+               ,error=>{
+    this.isloading = false;
+        this.handleError(error);
+               });
+
         }, error => {
                // this.isloading = false;
             console.log(error);
             this.handleError(error);
-        }); 
+        }); }
+        else{
+                Materialize.toast("Please add descriptive tags");
+        }
     }
 
     filesUpdated(files: any) {
@@ -124,7 +145,7 @@ export class uploadartwork {
             this.categroryList = x;
             this.isloading = false;
         }, error => {
-            console.log(error);
+            Materialize.toast(error);
         });
     }
 
@@ -185,7 +206,7 @@ export class uploadartwork {
             })
       }
       else{
-        // demo.showNotification('bottom', 'center',  error.error  );
+       Materialize.toast(  error.error  );
      
              this.isloading = false;
              
@@ -219,4 +240,10 @@ export class ArtWithTag {
 export class tags {
    id: any;
   tag: any;
+}
+
+export class PostTags{
+
+    artId:any;
+    tagId:any;
 }

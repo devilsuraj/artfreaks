@@ -1,0 +1,14 @@
+ <div class="row">
+          <div class="col s12 m4 l4" *ngFor="let item of artList">
+            <a href="#" class="left black-text" style="font-family:Century751 BT; font-style:italic; margin-top:-10px;"> <img src="images/redheart.png" style="display:inline;" /> Favourite </a>
+            <a href="paintingclick.html">      <img src="http://localhost:2822/wallimages/imagepath/{{item.pictureUrl}}" class="responsive-img"> </a>
+            <div class="card-content">
+            <h6 class="left">{{item.title}}</h6> <h6 class="right">Price ${{item.price}}</h6> <br /> 
+            <div class="row"> <p style="margin-left:10px;"> by {{item.userId}}<br/>
+{{item.width}} X {{item.height}} {{item.dimensionUnit}} <br/>
+Mixed Media on Canvas  <a href="contactartist.html" class="waves-effect waves-light btn white black-text right" style="border:1px solid #000;
+ margin-top:-20px;">Contact Artist</a> 
+</p> </div>
+            </div>
+            </div>
+       </div>
