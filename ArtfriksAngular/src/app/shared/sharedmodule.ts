@@ -7,10 +7,10 @@ import {loader} from './loader/loader';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {aboutus} from './about/about'
 import{AppComponent} from '../app.component';
 import { ModuleWithProviders } from '@angular/core';
-
+import {ImageModule} from './image/image'
 import {tag} from './tag/tag';
 @NgModule({
     imports: [
@@ -20,8 +20,8 @@ import {tag} from './tag/tag';
         RouterModule,
         CommonModule 
         ],
-        declarations: [ header,footer,loader,tag ],
-        exports:[header,footer,loader,tag]
+        declarations: [ header,footer,loader,tag,aboutus,ImageModule ],
+        exports:[header,footer,loader,tag,ImageModule]
 })
 
 export class SharedModule {}

@@ -159,6 +159,8 @@ check(){
                 this.isloading = false;
             });
     }
+
+    
     isOTP() {
         this.OTP = false;
     }

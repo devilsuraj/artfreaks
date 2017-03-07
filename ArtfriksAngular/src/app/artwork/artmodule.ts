@@ -13,6 +13,7 @@ import FileDroppa from 'file-droppa'
 import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 import { ImageUploadModule } from 'ng2-imageupload';
 import {AuthGuard} from '../services/account/authguard';
+import {artdetails} from './artworkdetails/artdetail'
 @NgModule({
     imports: [
         BrowserModule,
@@ -25,7 +26,7 @@ import {AuthGuard} from '../services/account/authguard';
         ImageUploadModule,
         Ng2AutoCompleteModule
         ],
-        declarations: [ artwork,uploadartwork ],
+        declarations: [ artwork,uploadartwork,artdetails ],
         exports:[],
         providers:[JwtHelper]
 })
@@ -34,5 +35,6 @@ export class ArtModule {}
 export const ArtworkRoutes =[
     { path: 'uploadart', pathMatch: 'full' , component: uploadartwork, canActivate:[AuthGuard]  },
     { path: 'artwork', pathMatch: 'full' , component: artwork  },
-
+        { path: 'art/:id', pathMatch: 'full' , component: artdetails  },
+  { path: '', pathMatch: 'full' , component: artwork  },
 ]

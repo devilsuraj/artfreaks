@@ -9,8 +9,8 @@ import {SharedModule} from '../shared/sharedmodule';
 import {loginComponent} from './login/login';
 import { ModuleWithProviders } from '@angular/core';
 import { JwtHelper, AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
-import {ImageModule} from '../shared/image/image'
 
+import {forgotpassword} from './forgotpassword/forgotpassword'
 @NgModule({
     imports: [
         BrowserModule,
@@ -20,7 +20,7 @@ import {ImageModule} from '../shared/image/image'
         RouterModule,
         CommonModule 
         ],
-        declarations: [ registration,loginComponent ,ImageModule],
+        declarations: [ registration,loginComponent ,forgotpassword],
         exports:[registration],
         providers:[JwtHelper]
 })

@@ -100,6 +100,7 @@ export class uploadartwork {
             }
                this.artservice.postArt(this.PostTags).subscribe(x => {
                     Materialize.toast(x.message);
+                     this._parentRouter.navigate(['/']);
                         this.isloading = false;
                }
                ,error=>{

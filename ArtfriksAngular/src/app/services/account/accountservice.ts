@@ -78,6 +78,11 @@ export class authservice {
             .map(res => <result>res.json())
             .catch(this.handleError)
     }
+     sendotpbyUser(username:any): Observable<result> {
+       return this.http.post(this._authUrl + "/api/account/sendOtpbyuser?username="+username ,this.joptions)
+            .map(res => <result>res.json())
+            .catch(this.handleError)
+    }
 
     Register(inputType: any): Observable<any> {
 
@@ -100,6 +105,12 @@ export class authservice {
         let body = JSON.stringify(inputType);
         return this.http.post(this._authUrl + "/api/account/ResetToOriginalPassword", body, this.joptions)
             .map(res => <any>res.json())
+            .catch(this.handleError)
+    }
+      resetpassword(username: any): Observable<result> {
+        console.log(username);
+        return this.http.post(this._authUrl + `/api/account/resetPassword?username=${username.username}&Password=${username.password}&Code=${username.code}`, this.options)
+            .map(res => <result>res.json())
             .catch(this.handleError)
     }
 

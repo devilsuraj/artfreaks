@@ -1,6 +1,8 @@
 import { Component,Input, OnInit, trigger, state, style, transition, animate, keyframes, group } from '@angular/core';
 import {artservice} from '../../services/artwork/artservice';
 import * as Materialize from "angular2-materialize";
+import { Router } from '@angular/router';
+import { JwtHelper, AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
 @Component({
       moduleId: module.id,
     selector: 'artwork',
@@ -37,8 +39,9 @@ export class artwork {
 
       isloading:any;
       artList:any;
-loading: boolean = true
-    constructor(private artservice:artservice) {
+loading: boolean = true;
+urlstring="http://base.kmtrt.in/wallimages/imagepath/";
+    constructor(private artservice:artservice, private jwtHelper:JwtHelper, private Router:Router) {
         this.getAllArt()
     }
 
@@ -50,7 +53,24 @@ loading: boolean = true
             this.isloading = false;
         }, error => {
             Materialize.toast(error);
+                 this.isloading = false;
         });
     }
+
+addtofav(item:any,id:any){
+     if (!localStorage.getItem('auth_key') || this.jwtHelper.isTokenExpired(localStorage.getItem('auth_key'))){
+            this.Router.navigate(['/account/login']);
+     }else{
+          this.isloading = true;
+        this.artservice.addtofav(id).subscribe(x => {
+            console.log(x);
+            item.isfav=true;
+            this.isloading = false;
+        }, error => {
+            Materialize.toast(error);
+                 this.isloading = false;
+        });
+     }
+}
 
 }
