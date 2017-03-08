@@ -67,6 +67,16 @@ export class artservice {
                 .catch(this.handleError);
         }
     }
+
+     removefav(id:any): Observable<any> {
+        if (localStorage.getItem("auth_key")) {
+            let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") });
+            let Authoptions = new RequestOptions({ headers: authheaders });
+            return this.http.get(this._authUrl + "/api/artowrk/removefav?id="+id, Authoptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+        }
+    }
     getCategories(): Observable<any> {
         if (localStorage.getItem("auth_key")) {
             let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") });

@@ -13,7 +13,7 @@ import { JwtHelper } from 'angular2-jwt';
 import {ServiceModule} from './services/servicemodule';
 import {loader} from './shared/loader/loader';
 import { ModuleWithProviders } from '@angular/core';
-export const routing: ModuleWithProviders = RouterModule.forRoot(MODULE_ROUTES);
+export const routing: ModuleWithProviders = RouterModule.forRoot(MODULE_ROUTES,{ useHash: true });
 @NgModule({
   imports:      [ BrowserModule,
                   HttpModule, 

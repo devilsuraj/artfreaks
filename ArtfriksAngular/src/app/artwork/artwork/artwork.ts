@@ -73,4 +73,20 @@ addtofav(item:any,id:any){
      }
 }
 
+removefav(item:any,id:any){
+     if (!localStorage.getItem('auth_key') || this.jwtHelper.isTokenExpired(localStorage.getItem('auth_key'))){
+            this.Router.navigate(['/account/login']);
+     }else{
+          this.isloading = true;
+        this.artservice.removefav(id).subscribe(x => {
+            console.log(x);
+            item.isfav=false;
+            this.isloading = false;
+        }, error => {
+            Materialize.toast(error);
+                 this.isloading = false;
+        });
+     }
+}
+
 }

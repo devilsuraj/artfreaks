@@ -49,6 +49,17 @@ export class authservice {
         }
     }
 
+      updateprofile(param:any): Observable<any> {
+        if (localStorage.getItem("auth_key")) {
+            let body = JSON.stringify(param);
+            this.authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") });
+            this.Authoptions = new RequestOptions({ headers: this.authheaders });
+            return this.http.post(this._tokenUrl+"/connect/logout",body, this.Authoptions)
+                .map(res => res)
+                .catch(this.handleError);
+        }
+    }
+
     Login(inputType: logModel): Observable<token> {
         return this.http.post(this._tokenUrl+"/connect/verifycode", this.tokenParams + "&username=" + inputType.userName + "&password=" + inputType.password, this.options)
             .map(res => <token>res.json())
