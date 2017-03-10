@@ -10,7 +10,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import {aboutus} from './about/about'
 import{AppComponent} from '../app.component';
 import { ModuleWithProviders } from '@angular/core';
-import {ImageModule} from './image/image'
+import {ImageModule} from './image/image';
+import { MasonryModule } from 'angular2-masonry';
 import {tag} from './tag/tag';
 @NgModule({
     imports: [
@@ -18,10 +19,11 @@ import {tag} from './tag/tag';
         FormsModule,
         HttpModule,
         RouterModule,
-        CommonModule 
+        CommonModule ,
+        MasonryModule
         ],
         declarations: [ header,footer,loader,tag,aboutus,ImageModule ],
-        exports:[header,footer,loader,tag,ImageModule]
+        exports:[header,footer,loader,tag,ImageModule,MasonryModule]
 })
 
 export class SharedModule {}

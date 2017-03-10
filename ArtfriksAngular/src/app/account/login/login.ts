@@ -1,5 +1,5 @@
 import { Http, Headers } from '@angular/http';
-import { JwtHelper, AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
+import { JwtHelper } from 'angular2-jwt';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, trigger, state, style, transition, animate, keyframes, group } from '@angular/core';
 import {authservice} from '../../services/account/accountservice';
@@ -63,7 +63,7 @@ export class loginComponent {
             if (!this.jwtHelper.isTokenExpired(localStorage.getItem('auth_key'))) // check if its not expired
             {
                 instance.getUserFromServer();
-                this._parentRouter.navigate(['/']);
+                    this._parentRouter.navigate(['/account/profile']);
                 this.isLoggedin = true; 
             }
             else {
@@ -86,7 +86,7 @@ export class loginComponent {
                 this.isLoggedin = true;
                 this.isloading = false;
                 instance.getUserFromServer();
-                this._parentRouter.navigate(['/']);
+                this._parentRouter.navigate(['/account/profile']);
                
             },
             error => {
@@ -105,7 +105,7 @@ export class loginComponent {
                 localStorage.setItem("refresh_key", Ttoken.refresh_token);
                 this.isLoggedin = true;
                 instance.getUserFromServer();
-                this._parentRouter.navigate(['/']);
+                this._parentRouter.navigate(['/account/profile']);
             },
             Error => {
                  Materialize.toast( Error.error,3000  );

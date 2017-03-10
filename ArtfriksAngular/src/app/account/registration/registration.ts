@@ -2,6 +2,7 @@ import { Component, OnInit, trigger, state, style, transition, animate, keyframe
 import { authservice } from '../../services/account/accountservice';
 import { artservice } from '../../services/artwork/artservice';
 import * as Materialize from "angular2-materialize";
+import { JwtHelper } from 'angular2-jwt';
 import { Router } from '@angular/router';
 declare var google: any;
 @Component({
@@ -37,7 +38,8 @@ declare var google: any;
     ]
 })
 export class registration {
-    constructor(private _parentRouter: Router, private _authservice: authservice, private artservice:artservice) { 
+    constructor(private _parentRouter: Router,
+    private jwtHelper:JwtHelper, private _authservice: authservice, private artservice:artservice) { 
         this.getProfession();
     }
     OTP: boolean = false;
@@ -48,7 +50,17 @@ export class registration {
     onebtnText: string = "Next";
     isloading: boolean = false;
     ProfessionList:any=[];
-   
+    token:any ;
+   ngOnInit(){
+         if (localStorage.getItem('auth_key')) {
+            this.token = this.jwtHelper.decodeToken(localStorage.getItem("auth_key"));
+            console.log(this.token);
+            if (!this.jwtHelper.isTokenExpired(localStorage.getItem('auth_key'))) // check if its not expired
+            {
+                    this._parentRouter.navigate(['/account/profile']);
+            }
+       } 
+   }
     getProfession() {
         this.isloading = true;
         this.artservice.getProfession().subscribe(x => {
@@ -120,12 +132,14 @@ check(){
     return true;
 }
     public putUser(username: any) {
+        if(this.updatemodel.ConfirmPassword==this.updatemodel.Password){
         this.isloading = true;
         this._authservice.putUser(username).subscribe(data => {
             if (data.status == 0) {
                 Materialize.toast("Succesully Registerd...", 3000);
                 this.last = true;
                 this.isloading = false;
+                   this._parentRouter.navigate(['/account/login']);
             }
             else {
                 Materialize.toast(data.message, 3000);
@@ -136,6 +150,9 @@ check(){
                 Materialize.toast(error, 3000);
                 this.isloading = false;
             });
+        }else{
+             Materialize.toast("Password did not match", 3000);
+        }
     }
 
     public sendOTP(username: any) {
@@ -172,13 +189,13 @@ check(){
                     localStorage.setItem("auth_key", Ttoken.access_token);
                     localStorage.setItem("refresh_key", Ttoken.refresh_token);
                     this.isloading = false;
-                    this._parentRouter.navigate(['/']);
+                    this._parentRouter.navigate(['/account/profile']);
                 },
                 error => {
                     Materialize.toast(error.error);
                     localStorage.removeItem("auth_key");
                     localStorage.removeItem("refresh_key");
-                    this._parentRouter.navigate(['/']);
+                    this._parentRouter.navigate(['/account/login']);
                     this.isloading = false;
                 })
         }

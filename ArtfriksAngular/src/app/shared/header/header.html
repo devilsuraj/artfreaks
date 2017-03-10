@@ -18,11 +18,7 @@
                 <li class="bold"><a class="collapsible-header waves-effect waves-grey darken-2">Art</a>
                 <div class="collapsible-body">
                      <ul >
-                         <li><a href="paintings.html" class="black-text">Paintings</a></li>
-                         <li><a href="photography.html" class="black-text">Photography</a></li>
-                         <li><a href="drawing.html" class="black-text">Drawings</a></li>
-                         <li><a href="sclupture.html" class="black-text">Sclupture</a></li>
-                         <li><a href="digital.html" class="black-text">Digital</a></li>
+                         <li *ngFor="let p of categroryList"><a routerLink="" class="black-text">{{p.title}}</a></li>
                      </ul>
                 </div>
                 </li>
@@ -56,11 +52,7 @@
         <ul>
         <li><a materialize="dropdown"  href="#" data-activates='dropdown1'>Art<span class="arrow-down"></span></a>
             <ul id="dropdown1"  class='dropdown'>
-            <li><a href="paintings.html">Paintings</a></li>
-            <li><a href="photography.html">Photography</a></li>
-            <li><a href="drawing.html">Drawings</a></li>
-            <li><a href="sclupture.html">Sclupture</a></li>
-            <li><a href="digital.html">Digital</a></li>
+        <li *ngFor="let p of categroryList"><a routerLink="" class="black-text">{{p.title}}</a></li>
             </ul>
        </li>
        <li><a routerLink="/" >home</a></li>

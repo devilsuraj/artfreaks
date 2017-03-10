@@ -34,9 +34,39 @@ export class artservice {
                 .map(res => <any>res.json())
                 .catch(this.handleError);
         }
-        else
-        {
+     
               return this.http.get(this._authUrl + "/api/artowrk/getAll", this.joptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+     
+    }
+
+       getAllMyArt(): Observable<any> {
+        if (localStorage.getItem("auth_key")) {
+            let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") });
+            let Authoptions = new RequestOptions({ headers: authheaders });
+            return this.http.get(this._authUrl + "/api/artowrk/getAllPersonal",Authoptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+        }
+         }
+
+           postMessage(param:any): Observable<any> {
+               let body = JSON.stringify(param);
+        if (localStorage.getItem("auth_key")) {
+            let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") ,'Content-Type': 'application/json'});
+            let Authoptions = new RequestOptions({ headers: authheaders });
+            return this.http.post(this._authUrl + "/user/sendMessage",body,Authoptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+        }
+         }
+
+          getAllMyFavArt(): Observable<any> {
+        if (localStorage.getItem("auth_key")) {
+            let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") });
+            let Authoptions = new RequestOptions({ headers: authheaders });
+            return this.http.get(this._authUrl + "/api/artowrk/getAllFavourites",Authoptions)
                 .map(res => <any>res.json())
                 .catch(this.handleError);
         }
@@ -78,13 +108,11 @@ export class artservice {
         }
     }
     getCategories(): Observable<any> {
-        if (localStorage.getItem("auth_key")) {
-            let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") });
-            let Authoptions = new RequestOptions({ headers: authheaders });
+      
             return this.http.get(this._authUrl + "/api/artowrk/Categories", this.joptions)
                 .map(res => <any>res.json())
                 .catch(this.handleError);
-        }
+      
     }
 
     getTypes(): Observable<any> {

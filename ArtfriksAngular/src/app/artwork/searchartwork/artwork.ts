@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import * as Materialize from "angular2-materialize";
 import { Router } from '@angular/router';
 import { JwtHelper, AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
-import { MasonryOptions } from 'angular2-masonry';
 @Component({
       moduleId: module.id,
     selector: 'artwork',
@@ -32,10 +31,7 @@ import { MasonryOptions } from 'angular2-masonry';
             ])
         ]),
 
-    ],
-       styles: [`
-       .brick { width: 310px; padding:10px; }
-     `]
+    ]
 
 })
 export class artwork {
@@ -45,9 +41,6 @@ export class artwork {
       type:any;
       isloading:any;
       artList:any;
-      public myOptions: MasonryOptions = { 
-  transitionDuration: '0.8s' 
-};
 loading: boolean = true;
 urlstring="http://base.kmtrt.in/wallimages/imagepath/";
     constructor(private artservice:artservice, private jwtHelper:JwtHelper, private route:ActivatedRoute, private Router:Router) {
@@ -55,12 +48,22 @@ urlstring="http://base.kmtrt.in/wallimages/imagepath/";
        this.id = +params['id'];
         this.type = +params['type'];
         console.log(this.id);});
-        this.getAllArt();
+        if(this.type="account")
+        {
+            this.getmyArt();
+        }
+        else if (this.type="favourite")
+        {
+
+        }
+        else{
+        this.getAllArt()
+        }
     }
 
     getAllArt() {
         this.isloading = true;
-        this.artservice.getAllArt().subscribe(x => {
+        this.artservice.getAllMyArt().subscribe(x => {
             console.log(x);
             this.artList = x.message;
             this.isloading = false;

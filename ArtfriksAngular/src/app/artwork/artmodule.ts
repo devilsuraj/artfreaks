@@ -7,6 +7,8 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import {SharedModule} from '../shared/sharedmodule';
 import {artwork} from './artwork/artwork';
+import {myartwork} from './myartwork/artwork';
+import {favartwork} from './favartwork/artwork';
 import { ModuleWithProviders } from '@angular/core';
 import { JwtHelper, AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
 import FileDroppa from 'file-droppa'
@@ -14,6 +16,7 @@ import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 import { ImageUploadModule } from 'ng2-imageupload';
 import {AuthGuard} from '../services/account/authguard';
 import {artdetails} from './artworkdetails/artdetail'
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -26,7 +29,7 @@ import {artdetails} from './artworkdetails/artdetail'
         ImageUploadModule,
         Ng2AutoCompleteModule
         ],
-        declarations: [ artwork,uploadartwork,artdetails ],
+        declarations: [ artwork,uploadartwork,artdetails,favartwork ,myartwork],
         exports:[],
         providers:[JwtHelper]
 })

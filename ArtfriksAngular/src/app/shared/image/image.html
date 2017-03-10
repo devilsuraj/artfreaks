@@ -1,5 +1,5 @@
 
  <div *ngIf="loading"  class="loader">
-           Loading..
+         <img src="images/giphy.gif" width="100"/>
           </div>
 <img [hidden]="loading" (load)="this.loading=false;" src="{{src}}" alt="{{alt}}" class="responsive-img" />

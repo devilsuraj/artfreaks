@@ -6,7 +6,8 @@
         <div class="row"> 
         	<div class="my-profile">
                 <h4 style="font-family:'myriadPro cond';"> My Profile </h4>
-                <img src="{{urlstring}}/{{model.pictureUrl}}" onerror="this.onerror=null;this.src='/images/user.png';"  class="responsive-img" alt=""/>
+                <image *ngIf="!isloading" [src]="urlstring + model.pictureUrl" onerror="this.onerror=null;this.src='/images/user.png';"  class="responsive-img" alt=""></image>
+                  <div *ngIf="isloading" class="loader"></div>
             </div>
         </div>
         
@@ -16,7 +17,7 @@
             <div class="file-field input-field">
                 <div class="btn white black-text" style="border-top:1px solid #ccc; border-bottom:1px solid #ccc;">
                 <span>+ Upload Picture</span>
-                <input type="file">
+                <input type="file"(change)="fileChange($event)">
               </div>
             
             </div>
@@ -24,11 +25,12 @@
           <br />  <br />
            <form action="#">
             <div class="collection" style="font-family:Century751 Italic BT; font-style:italic; font-size:13px;border:none; width:80%;">
-            	<a href="#" class="black-text" style="padding:5px 0; float:left; width:100%;">My Profile</a><br/>
-                <a href="#" class="black-text" style="padding:5px 0; float:left; width:100%;">My Artworks</a><br/>
-                <a href="#" class="black-text" style="padding:5px 0; float:left; width:100%;">My favourites</a><br/>
-                <a href="#" class="black-text" style="padding:5px 0; float:left; width:100%;">My Purchases</a><br/>
+            	<a routerLink="/account/profile" class="black-text" style="padding:5px 0; float:left; width:100%;">My Profile</a><br/>
+                <a routerLink="myart" class="black-text" style="padding:5px 0; float:left; width:100%;">My Artworks</a><br/>
+                <a routerLink="favourites" style="padding:5px 0; float:left; width:100%;">My favourites</a><br/>
+                <a  class="black-text" style="padding:5px 0; float:left; width:100%;">My Purchases</a><br/>
                 <a href="#!" class="black-text" style="padding:5px 0; float:left; width:100%;"><span class="new badge red" style="left:100px; width:40px;">4</span>Message/Inbox </a>
+                <a (click)="Logout()"  class=" black-text" style="cursor:pointer; padding:5px 0; float:left; width:100%;">Logout</a>
     		</div>
          
           </form>
@@ -36,9 +38,8 @@
                
                  <form action="#">
             <div class="file-field input-field">
-                <div class="btn white black-text" style="border-top:1px solid #ccc; border-bottom:1px solid #ccc;">
-                <span>+ Upload an artwork</span>
-                <input type="file">
+                <div routerLink="/uploadart" class="btn white black-text" style=" border-top:1px solid #ccc; border-bottom:1px solid #ccc;">
+              + Upload an artwork
               </div>
             
             </div>
@@ -56,13 +57,14 @@
 
 
 <div class="row"> 
+  <router-outlet></router-outlet>
 <h4 style="font-family:'myriadPro cond';"> Bio Data </h4> 
 <input type="hidden" [(ngModel)]="model.pictureUrl"/>
 <p class="note"> A brief write up about you. Your education, shows, exhibitions, grants received etc. </p>
         <div class="input-field col s12 artist-pg">
           <textarea id="biodata"[(ngModel)]="model.bioData" class="materialize-textarea box-style-2"></textarea>
         </div>      
-    <a class="waves-effect waves-light btn white black-text right"><i class="material-icons right">mode_edit</i>CLick To Edit</a>
+    <a (click)="putUser(model)" class="waves-effect waves-light btn white black-text right"><i class="material-icons right">mode_edit</i>CLick To Edit</a>
 
 </div>
 
@@ -74,7 +76,7 @@
         <div class="input-field col s12 artist-pg">
           <textarea id="aboutart" [(ngModel)]="model.userBrief" class="materialize-textarea box-style-2"></textarea>
         </div>      
-    <a class="waves-effect waves-light btn white black-text right"><i class="material-icons right">mode_edit</i>CLick To Edit</a>
+    <a (click)="putUser(model)" class="waves-effect waves-light btn white black-text right"><i class="material-icons right">mode_edit</i>CLick To Edit</a>
 
 </div>
 

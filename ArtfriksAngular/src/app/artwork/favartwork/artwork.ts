@@ -3,12 +3,12 @@ import {artservice} from '../../services/artwork/artservice';
 import { ActivatedRoute } from '@angular/router';
 import * as Materialize from "angular2-materialize";
 import { Router } from '@angular/router';
-import { JwtHelper, AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
 import { MasonryOptions } from 'angular2-masonry';
+import { JwtHelper, AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
 @Component({
       moduleId: module.id,
     selector: 'artwork',
-  templateUrl:'/app/artwork/artwork/artwork.html',
+  templateUrl:'/app/artwork/favartwork/artwork.html',
     animations: [
         trigger('cardauth', [
             state('*', style({
@@ -33,12 +33,13 @@ import { MasonryOptions } from 'angular2-masonry';
         ]),
 
     ],
-       styles: [`
-       .brick { width: 310px; padding:10px; }
+         styles: [`
+       .brick { width: 330px; padding:10px; }
      `]
 
+
 })
-export class artwork {
+export class favartwork {
       @Input()
       id:any=0;
       sub:any;
@@ -55,12 +56,13 @@ urlstring="http://base.kmtrt.in/wallimages/imagepath/";
        this.id = +params['id'];
         this.type = +params['type'];
         console.log(this.id);});
-        this.getAllArt();
+        this.getmyfavArt();
+        
     }
 
     getAllArt() {
         this.isloading = true;
-        this.artservice.getAllArt().subscribe(x => {
+        this.artservice.getAllMyArt().subscribe(x => {
             console.log(x);
             this.artList = x.message;
             this.isloading = false;
@@ -72,7 +74,7 @@ urlstring="http://base.kmtrt.in/wallimages/imagepath/";
 
      getmyArt() {
         this.isloading = true;
-        this.artservice.getAllMyFavArt().subscribe(x => {
+        this.artservice.getAllMyArt().subscribe(x => {
             console.log(x);
             this.artList = x.message;
             this.isloading = false;
@@ -85,7 +87,7 @@ urlstring="http://base.kmtrt.in/wallimages/imagepath/";
     
      getmyfavArt() {
         this.isloading = true;
-        this.artservice.getAllArt().subscribe(x => {
+        this.artservice.getAllMyFavArt().subscribe(x => {
             console.log(x);
             this.artList = x.message;
             this.isloading = false;

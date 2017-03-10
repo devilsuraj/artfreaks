@@ -30,7 +30,9 @@
       "angular2-image-upload":"npm:angular2-image-upload",
       "file-droppa":"npm:file-droppa",
       'ng2-imageupload': 'npm:ng2-imageupload',
-          'ng2-auto-complete':'npm:ng2-auto-complete',
+      'ng2-auto-complete':'npm:ng2-auto-complete',
+      "angular2-masonry": "node_modules/angular2-masonry",
+      "masonry-layout": "node_modules/angular2-masonry/node_modules/masonry-layout/dist/masonry.pkgd.js",
       // other libraries
       'rxjs': 'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
@@ -40,6 +42,7 @@
       app: {
         defaultExtension: 'js'
       },
+       "angular2-masonry": { "defaultExtension": "js", "main": "index" },
        'materialize-css': { 
         "format": "global",
         "main": "dist/js/materialize",

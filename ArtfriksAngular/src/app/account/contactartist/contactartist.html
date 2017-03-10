@@ -23,6 +23,20 @@
 <h5>other works by {{art.art.user}}...</h5>
 <div class="col s12 m12 l12">
 
+
+   <div style="margin-top: 60px;">
+   <form >
+  <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" [(ngModel)]="messagemodel.message" name="Message" class="materialize-textarea"></textarea>
+          <label for="textarea1">Write Message here</label>
+        </div>
+      </div>
+      <button (click)="sendmessage(messagemodel.message)" class="btn btn-flat" style="margin-left:280px;"> Send </button>
+   </form>
+   </div>
+ </div>
+</div>
 <div class="col s12 m2 l2" *ngFor="let p of art.artworks">
   <a routerLink="/art/{{p.id}}">
  <image 
@@ -31,10 +45,6 @@
                  [width]="''"></image>
   </a>
    </div>
-
- </div>
-</div>
-
 
  </div> <!--left part-->
 <div class="col s12 m4 l4" *ngIf="art.art">  <!--right part-->
@@ -63,7 +73,7 @@ Country: {{art.user.country}} <img src="images/paintings/ind.jpg" width="10" hei
       <div class="col s12 m12 l12">
         <img src="{{urlstring }}{{art.profile.pictureUrl}}" width="60" height="110" alt="" class="responsive-img" style="margin-left:10px;"/> 
         
-        <a routerLink="/account/contact/{{art.art.artwork.id}}" class="black-text"> <h5>Contact Artsist </h5> </a>
+        <a routerLink="/account/contact" class="black-text"> <h5>Contact Artsist </h5> </a>
         
         
         <p> {{art.profile.bioData}} ... </p>
@@ -82,16 +92,5 @@ Country: {{art.user.country}} <img src="images/paintings/ind.jpg" width="10" hei
 </ul>
           </div>     
      </div>
- </div>
-</div>
-<div class="row center"> 
-<h5>other you may also like......</h5>
-<hr />
-<div class="col s12 m12 l12">
-<div class="col s12 m2 l2"><img src="images/cat4.jpg" width="200" height="220" class="responsive-img" alt=""/> </div>
-<div class="col s12 m2 l2"> <img src="images/cat5.jpg" width="200" height="220" class="responsive-img" alt=""/></div>
-<div class="col s12 m2 l2"><img src="images/cat2.jpg" width="350" height="220" class="responsive-img" alt=""/> </div>
-<div class="col s12 m2 l2"> <img src="images/real.jpg" width="400" height="220" class="responsive-img" alt=""/></div>
-<div class="col s12 m2 l2"><img src="images/feat1.jpg" width="300" height="220" class="responsive-img" alt=""/> </div>
  </div>
 </div>

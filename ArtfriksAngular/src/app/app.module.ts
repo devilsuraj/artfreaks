@@ -12,6 +12,7 @@ import { MaterializeDirective } from "angular2-materialize";
 import { JwtHelper } from 'angular2-jwt';
 import {ServiceModule} from './services/servicemodule';
 import {loader} from './shared/loader/loader';
+import { MasonryModule } from 'angular2-masonry';
 import { ModuleWithProviders } from '@angular/core';
 export const routing: ModuleWithProviders = RouterModule.forRoot(MODULE_ROUTES,{ useHash: true });
 @NgModule({
@@ -23,7 +24,7 @@ export const routing: ModuleWithProviders = RouterModule.forRoot(MODULE_ROUTES,{
                   ServiceModule,
                   ArtModule,
                   routing,
-              
+              MasonryModule
                    ],
   declarations: [ AppComponent,MaterializeDirective ],
   bootstrap:    [ AppComponent ]

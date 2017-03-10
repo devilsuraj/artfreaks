@@ -52,9 +52,9 @@ export class authservice {
       updateprofile(param:any): Observable<any> {
         if (localStorage.getItem("auth_key")) {
             let body = JSON.stringify(param);
-            this.authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") });
+            this.authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key"),'Content-Type': 'application/json' });
             this.Authoptions = new RequestOptions({ headers: this.authheaders });
-            return this.http.post(this._tokenUrl+"/connect/logout",body, this.Authoptions)
+            return this.http.post(this._tokenUrl+"/user/updateuserinfo",body, this.Authoptions)
                 .map(res => res)
                 .catch(this.handleError);
         }
