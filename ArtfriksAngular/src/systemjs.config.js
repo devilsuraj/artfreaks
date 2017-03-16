@@ -32,6 +32,7 @@
       'ng2-imageupload': 'npm:ng2-imageupload',
       'ng2-auto-complete':'npm:ng2-auto-complete',
       "angular2-masonry": "node_modules/angular2-masonry",
+      "ng2-owl-carousel":"node_modules/ng2-owl-carousel",
       "masonry-layout": "node_modules/angular2-masonry/node_modules/masonry-layout/dist/masonry.pkgd.js",
       // other libraries
       'rxjs': 'npm:rxjs',
@@ -54,6 +55,10 @@
       },
     'ng2-imageupload': {
               main: 'index.js',
+              defaultExtension: 'js'
+          },
+           'ng2-owl-carousel': {
+              main: 'index',
               defaultExtension: 'js'
           },
       'angular2-materialize': {

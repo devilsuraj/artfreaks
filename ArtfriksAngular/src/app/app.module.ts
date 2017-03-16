@@ -8,7 +8,7 @@ import { AppComponent }   from './app.component';
 import {AccountModule} from './account/accountmodule';
 import {ArtModule} from './artwork/artmodule';
 import { RouterModule, CanActivate  }   from '@angular/router';
-import { MaterializeDirective } from "angular2-materialize";
+
 import { JwtHelper } from 'angular2-jwt';
 import {ServiceModule} from './services/servicemodule';
 import {loader} from './shared/loader/loader';
@@ -26,7 +26,8 @@ export const routing: ModuleWithProviders = RouterModule.forRoot(MODULE_ROUTES,{
                   routing,
               MasonryModule
                    ],
-  declarations: [ AppComponent,MaterializeDirective ],
+  declarations: [ AppComponent ],
+  exports:[],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

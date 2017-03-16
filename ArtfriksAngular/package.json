@@ -54,7 +54,8 @@
     "reflect-metadata": "^0.1.8",
     "systemjs-builder": "^0.16.0-alpha.1",
   "file-droppa":"*",
-  "ng2-imageupload":"*"
+  "ng2-imageupload":"*",
+  "ng2-owl-carousel":"*"
   },
   "devDependencies": {
     "concurrently": "^3.2.0",

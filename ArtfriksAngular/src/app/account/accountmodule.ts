@@ -10,7 +10,10 @@ import {loginComponent} from './login/login';
 import { ModuleWithProviders } from '@angular/core';
 import { JwtHelper, AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
 import {profile} from './profile/profile';
+import { MaterializeDirective } from "angular2-materialize";
+import {message} from './message/message';
 import {contactartist} from './contactartist/contactartist';
+import {bio} from './bio/bio';
 import {forgotpassword} from './forgotpassword/forgotpassword'
 @NgModule({
     imports: [
@@ -21,8 +24,8 @@ import {forgotpassword} from './forgotpassword/forgotpassword'
         RouterModule,
         CommonModule 
         ],
-        declarations: [ registration,loginComponent ,forgotpassword,profile,contactartist],
-        exports:[registration,contactartist],
+        declarations: [ registration,loginComponent,bio,message,MaterializeDirective ,forgotpassword,profile,contactartist],
+        exports:[registration,contactartist,MaterializeDirective],
         providers:[JwtHelper]
 })
 

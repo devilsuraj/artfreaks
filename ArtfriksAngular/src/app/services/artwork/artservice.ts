@@ -51,12 +51,72 @@ export class artservice {
         }
          }
 
+               getMessages(): Observable<any> {
+        if (localStorage.getItem("auth_key")) {
+            let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") });
+            let Authoptions = new RequestOptions({ headers: authheaders });
+            return this.http.get(this._authUrl + "/user/getMessage",Authoptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+        }
+         }
+
+
+    gethomedata(): Observable<any> {
+                 return this.http.get(this._authUrl + "/api/artowrk/GetHomeData",this.joptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+         }
+
+               getMessagesReply(id): Observable<any> {
+        if (localStorage.getItem("auth_key")) {
+            let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") });
+            let Authoptions = new RequestOptions({ headers: authheaders });
+            return this.http.get(this._authUrl + "/user/getreplyMessage?id="+id,Authoptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+        }
+         }
+
            postMessage(param:any): Observable<any> {
                let body = JSON.stringify(param);
         if (localStorage.getItem("auth_key")) {
             let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") ,'Content-Type': 'application/json'});
             let Authoptions = new RequestOptions({ headers: authheaders });
             return this.http.post(this._authUrl + "/user/sendMessage",body,Authoptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+        }
+         }
+
+                postReplyMessage(param:any): Observable<any> {
+               let body = JSON.stringify(param);
+        if (localStorage.getItem("auth_key")) {
+            let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") ,'Content-Type': 'application/json'});
+            let Authoptions = new RequestOptions({ headers: authheaders });
+            return this.http.post(this._authUrl + "/user/ReplyMessage",body,Authoptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+        }
+         }
+
+                deleteReplyMessage(param:any): Observable<any> {
+               let body = JSON.stringify(param);
+        if (localStorage.getItem("auth_key")) {
+            let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") ,'Content-Type': 'application/json'});
+            let Authoptions = new RequestOptions({ headers: authheaders });
+            return this.http.post(this._authUrl + "/user/deleteReplyMessage",body,Authoptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+        }
+         }
+
+                deleteMessage(param:any): Observable<any> {
+               let body = JSON.stringify(param);
+        if (localStorage.getItem("auth_key")) {
+            let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") ,'Content-Type': 'application/json'});
+            let Authoptions = new RequestOptions({ headers: authheaders });
+            return this.http.post(this._authUrl + "/user/deleteMessage",body,Authoptions)
                 .map(res => <any>res.json())
                 .catch(this.handleError);
         }

@@ -11,9 +11,9 @@ import { Observable } from 'rxjs/observable';
 import {Configuration} from '../../services/app/app.config';
 @Component({
   selector:'profile',
-  templateUrl:'./app/account/profile/profile.html'
+  templateUrl:'./app/account/bio/bio.html'
 })
-export class profile{
+export class bio{
     isloading:boolean=false;
     sharedUserDetailsModel:any={};
     token:any;
@@ -59,7 +59,7 @@ fileChange(event) {
     //    headers.append('Content-Type', 'multipart/form-data');
         headers.append('Accept', 'application/json');
         let options = new RequestOptions({ headers: headers });
-        this.http.post(`http://localhost:58818/home/index`, formData, options)
+        this.http.post(`${this.Configuration.Server}/picture/save`, formData, options)
             .map(res => res.json())
             .catch(error => Observable.throw(error))
             .subscribe(
