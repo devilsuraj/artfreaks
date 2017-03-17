@@ -59,7 +59,7 @@ fileChange(event) {
     //    headers.append('Content-Type', 'multipart/form-data');
         headers.append('Accept', 'application/json');
         let options = new RequestOptions({ headers: headers });
-        this.http.post(`http://localhost:58818/home/index`, formData, options)
+        this.http.post(`http://base.kmtrt.in/picture/save`, formData, options)
             .map(res => res.json())
             .catch(error => Observable.throw(error))
             .subscribe(

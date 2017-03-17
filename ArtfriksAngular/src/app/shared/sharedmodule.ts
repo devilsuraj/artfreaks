@@ -13,6 +13,7 @@ import { ModuleWithProviders } from '@angular/core';
 import {ImageModule} from './image/image';
 import { MasonryModule } from 'angular2-masonry';
 import {tag} from './tag/tag';
+import {auth_nav} from '../account/auth-nav/authnav';
 @NgModule({
     imports: [
         BrowserModule,
@@ -22,8 +23,8 @@ import {tag} from './tag/tag';
         CommonModule ,
         MasonryModule
         ],
-        declarations: [ header,footer,loader,tag,aboutus,ImageModule ],
-        exports:[header,footer,loader,tag,ImageModule,MasonryModule]
+        declarations: [ header,footer,loader,tag,aboutus,ImageModule ,auth_nav],
+        exports:[header,footer,loader,tag,ImageModule,MasonryModule,auth_nav]
 })
 
 export class SharedModule {}

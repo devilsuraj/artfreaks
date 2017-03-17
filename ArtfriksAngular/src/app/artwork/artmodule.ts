@@ -18,6 +18,11 @@ import {AuthGuard} from '../services/account/authguard';
 import {artdetails} from './artworkdetails/artdetail'
 import {carousel} from './carousel/carousel';
 import { OwlModule } from 'ng2-owl-carousel';
+import {searchart} from "./searchartwork/artwork";
+import {categoryart} from './categoryart/artwork'
+import {dealsart} from './dealsart/artwork'
+import {collectionart} from './collectionart/artwork';
+import {artarticle} from './artarticles/artarticle';
 @NgModule({
     imports: [
         BrowserModule,
@@ -31,7 +36,7 @@ import { OwlModule } from 'ng2-owl-carousel';
         Ng2AutoCompleteModule,
         OwlModule
         ],
-        declarations: [carousel, artwork,uploadartwork,artdetails,favartwork ,myartwork],
+        declarations: [carousel,searchart,artarticle,categoryart,collectionart,dealsart, artwork,uploadartwork,artdetails,favartwork ,myartwork],
         exports:[],
         providers:[JwtHelper]
 })
@@ -42,5 +47,11 @@ export const ArtworkRoutes =[
     { path: 'uploadart', pathMatch: 'full' , component: uploadartwork, canActivate:[AuthGuard]  },
     { path: 'artwork', pathMatch: 'full' , component: artwork  },
         { path: 'art/:id', pathMatch: 'full' , component: artdetails  },
+         { path: 'artbystyle/:id', pathMatch: 'full' , component: searchart  },
+            { path: 'artbycategory/:id', pathMatch: 'full' , component: categoryart  },
+          { path: 'art/:id', pathMatch: 'full' , component: artdetails  },
+               { path: 'artcollection', pathMatch: 'full' , component: collectionart  },
+                    { path: 'artdeals', pathMatch: 'full' , component: dealsart  },
+                               { path: 'artarticle', pathMatch: 'full' , component: artarticle  },
 
 ]

@@ -1,0 +1,8 @@
+<li *ngIf="!token.isLoggedIn"><span class="red-text" style="font-style:italic; font-size:30px; font-weight:bold;"> ! </span> </li>
+<li *ngIf="!token.isLoggedIn"><a class="black-text" routerLink="/account/registration">Register</a></li>
+<li *ngIf="!token.isLoggedIn" class="black-text"><a class="black-text" routerLink="/account/login">Sign in</a></li>
+
+<li *ngIf="token.isLoggedIn"> <a routerLink="/account/profile">
+<span style="font-family:Kefa; font-style:italic; color:red; font-size:24px;"> 
+    ! </span><span style="color:#000">{{token.username}}</span><label class="note">Logged in as</label></a></li>
+    <li *ngIf="token.isLoggedIn" class="black-text" style="cursor: pointer"><a class="black-text" (click)="Logout()"><label>Logout</label></a></li>

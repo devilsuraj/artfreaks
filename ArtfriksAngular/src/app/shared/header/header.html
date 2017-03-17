@@ -5,10 +5,8 @@
    <div class="search-area hide-on-med-and-down valign-wrapper">
      <input id="search" class="valign" type="text" required><i class="material-icons red white-text valign center right" style="margin-top:0px;">search</i></div>
       <ul class="social right hide-on-med-and-down rightpad">
-        <li> <a class="grey-text" href="#!"> <i class="fa fa-facebook-official fa-lg" aria-hidden="true"></i></a></li>
-        <li class="black-text"> <a class="grey-text" href="#!"><i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i> </a></li>
-        <li> <a class="grey-text" href="#!"><i class="fa fa-youtube-square fa-lg" aria-hidden="true"></i> </a> </li>
-        <li> <a href="artworks.html">  <img src="images/notsure2.png" class="responsive-img" width="52px" alt=""/></a> </li>
+       <authorize-nav></authorize-nav>   
+         <li> <a href="artworks.html">  <img src="images/notsure2.png" class="responsive-img" width="52px" alt=""/></a> </li>
       </ul>
        <!--mobile menu-->
        <ul id="mobile-demo" class="side-nav show-on-small">
@@ -18,7 +16,7 @@
                 <li class="bold"><a class="collapsible-header waves-effect waves-grey darken-2">Art</a>
                 <div class="collapsible-body">
                      <ul >
-                         <li *ngFor="let p of categroryList"><a routerLink="" class="black-text">{{p.title}}</a></li>
+                         <li *ngFor="let p of categroryList"><a routerLink="/artbycategory/{{p.id}}" class="black-text">{{p.title}}</a></li>
                      </ul>
                 </div>
                 </li>
@@ -26,22 +24,20 @@
                 <li class="bold active"><a class="collapsible-header waves-effect waves-grey darken-2 active">Artist</a>
                     <div class="collapsible-body" style="display: block;">
                         <ul>
-                           <li><a href="artistname.html" class="black-text">By Name</a></li>
-                           <li><a href="artistlocation.html" class="black-text">By Location</a></li>
+                            <li><a routerLink="/artist/A">By Name</a></li>
+               <li><a routerLink="/artistbylocation/A">By Location</a></li>
                          </ul>
                     </div>
                 </li>
                 </ul>
                 </li>
-                <li class="bold"><a href="newaddition.html" class="waves-effect waves-grey darken-2">New Additions</a></li>
-                <li class="bold"><a href="about.html" class="waves-effect waves-grey darken-2">About Us</a></li>
-                <li class="bold"><a href="article.html" class="waves-effect waves-grey darken-2">Art Articles</a></li>
-                <li class="bold"><a href="collection.html" class="waves-effect waves-grey darken-2">Artfreaks Collection</a></li>
-                <li class="bold"><a href="#.html" class="waves-effect waves-grey darken-2">Register</a></li>
-                <li class="bold"><a href="login.html" class="waves-effect waves-grey darken-2">Login</a></li>
-                <li class="bold"><a href="#.html" class="waves-effect waves-grey darken-2">My Order</a></li>
-                <li class="bold"><a href="artistpage.html" class="waves-effect waves-grey darken-2">My Account</a></li>
-               <li><a  href="#"> <i class="material-icons">  shopping_basket</i> </a ></li>
+          <li><a routerLink="/artwork" >*NEW Additions</a> </li>
+       <li><a routerLink="/aboutus" >About Us</a> </li>
+       <li><a routerLink="/artarticle" >Art Articles</a> </li>
+       <li><a routerLink="/artcollection" ><img src="images/logo-white.png" alt="" class="responsive-img"/> Collection</a> </li>
+       <li class="" style="padding-right:10px;"> <a class="white-text" routerLink="/account/profile/favourites"> <i class="fa fa-heart" aria-hidden="true"></i></a></li>
+      <li class="" style="padding-right:0px;"> <a routerLink="/account/profile" class="white-text"> <i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+
         	</ul> 
          </div>
           </div>
@@ -52,22 +48,21 @@
         <ul>
         <li><a materialize="dropdown"  href="#" data-activates='dropdown1'>Art<span class="arrow-down"></span></a>
             <ul id="dropdown1"  class='dropdown'>
-        <li *ngFor="let p of categroryList"><a routerLink="" class="black-text">{{p.title}}</a></li>
+        <li *ngFor="let p of categroryList"><a routerLink="/artbycategory/{{p.id}}" class="black-text">{{p.title}}</a></li>
             </ul>
        </li>
-       <li><a routerLink="/" >home</a></li>
+       <li><a routerLink="/artdeals" >$ ART DEALS</a></li>
       <li><a  materialize="dropdown" href="#" data-activates='dropdown2'>Artist<span class="arrow-down"></span></a>
         <ul id="dropdown2" class='dropdown'>
-          <li><a href="artistname.html">By Name</a></li>
-          <li><a href="artistlocation.html">By Location</a></li>
+          <li><a routerLink="/artist/A">By Name</a></li>
+          <li><a routerLink="/artistbylocation/A">By Location</a></li>
         </ul>
       </li>
-       <li><a routerLink="/uploadart" >Upload Art</a> </li>
+       <li><a routerLink="/artwork" >*NEW Additions</a> </li>
        <li><a routerLink="/aboutus" >About Us</a> </li>
-       <li><a routerLink="/account/login" >Login</a> </li>
-       <li><a routerLink="/account/register" >Register</a> </li>
-       <li><a href="collection.html" ><img src="images/logo-white.png" alt="" class="responsive-img"/> Collection</a> </li>
-       <li class="" style="padding-right:10px;"> <a class="white-text" href="#"> <i class="fa fa-heart" aria-hidden="true"></i></a></li>
+       <li><a routerLink="/artarticle" >Art Articles</a> </li>
+       <li><a routerLink="/artcollection" ><img src="images/logo-white.png" alt="" class="responsive-img"/> Collection</a> </li>
+       <li class="" style="padding-right:10px;"> <a class="white-text" routerLink="/account/profile/favourites"> <i class="fa fa-heart" aria-hidden="true"></i></a></li>
       <li class="" style="padding-right:0px;"> <a routerLink="/account/profile" class="white-text"> <i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
   </ul>
   </div>

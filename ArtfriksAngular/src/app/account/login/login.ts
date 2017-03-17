@@ -43,7 +43,8 @@ declare var $:any, System:any, demo:any;
 
 export class loginComponent {
     private subscription: Subscription;
-    constructor(public jwtHelper: JwtHelper,
+    constructor(
+        public jwtHelper: JwtHelper,
         private _parentRouter: Router,
         private authentication: authservice,
         private authLoginService: AuthLoginService) { }
@@ -112,25 +113,32 @@ export class loginComponent {
             })
     }
 
-    public getUserFromServer() {
+   public getUserFromServer() {
+          if(localStorage.getItem("auth_key")){
         this.isloading = true;
         this.authentication.getUserInfo().subscribe(data => {
-            this.token = data;
+             console.log(data);
+            this.token = data.message;
+            console.log(this.token);
+            this.model= this.token.userbio;
             this.isloading = false;
-            this.sharedUserDetailsModel.username = data.user[0].fullName;
+            this.sharedUserDetailsModel.username = this.token.user.fullName;
             this.sharedUserDetailsModel.isLoggedIn = true;
             this.authLoginService.broadcastTextChange(this.sharedUserDetailsModel);
-               Materialize.toast("Welcome " + data.user[0].fullName,3000 );
+               Materialize.toast("Welcome " + data.message.user.fullName,3000 );
         },
             error => {
-                if (localStorage.getItem('refresh_key')) { // check if refresh key is present it wont be present for external logged in users
-                    this.refreshLogin(); // renew auth key and redirect
-                }
+            
                 this.isloading = false;
 
             });
+          }
+          else{
+             this.sharedUserDetailsModel.username = "";
+            this.sharedUserDetailsModel.isLoggedIn = false;
+            this.authLoginService.broadcastTextChange(this.sharedUserDetailsModel);
+          }
     }
-
    
 
     public Logout() {

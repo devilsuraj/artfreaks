@@ -34,8 +34,51 @@ export class artservice {
                 .map(res => <any>res.json())
                 .catch(this.handleError);
         }
-     
               return this.http.get(this._authUrl + "/api/artowrk/getAll", this.joptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+     
+    }
+
+       getalluser(name): Observable<any> {
+              return this.http.get(this._authUrl + "/user/userinfoByName?alpha="+name, this.joptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+         }
+           getalluserbycountry(name): Observable<any> {
+              return this.http.get(this._authUrl + "/user/userinfoByLocation?alpha="+name, this.joptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+         }
+           getalluserinfo(name): Observable<any> {
+              return this.http.get(this._authUrl + "/user/userinfoById?Id="+name, this.joptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+         }
+
+        getAllArtByTag(id): Observable<any> {
+        if (localStorage.getItem("auth_key")) {
+            let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") });
+            let Authoptions = new RequestOptions({ headers: authheaders });
+            return this.http.get(this._authUrl + "/api/artowrk/getByTag?id="+id,Authoptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+        }
+              return this.http.get(this._authUrl + "/api/artowrk/getByTag?id="+id, this.joptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+     
+    }
+
+    getAllArtByCat(id): Observable<any> {
+        if (localStorage.getItem("auth_key")) {
+            let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") });
+            let Authoptions = new RequestOptions({ headers: authheaders });
+            return this.http.get(this._authUrl + "/api/artowrk/getbycategory?id="+id,Authoptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+        }
+              return this.http.get(this._authUrl + "/api/artowrk/getbycategory?id="+id, this.joptions)
                 .map(res => <any>res.json())
                 .catch(this.handleError);
      
@@ -49,6 +92,13 @@ export class artservice {
                 .map(res => <any>res.json())
                 .catch(this.handleError);
         }
+         }
+
+              getarticles(): Observable<any> {
+            return this.http.get(this._authUrl + "/api/artowrk/getARticle",this.joptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+       
          }
 
                getMessages(): Observable<any> {

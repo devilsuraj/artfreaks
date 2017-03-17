@@ -3,12 +3,12 @@ import {artservice} from '../../services/artwork/artservice';
 import { ActivatedRoute } from '@angular/router';
 import * as Materialize from "angular2-materialize";
 import { Router } from '@angular/router';
-import { MasonryOptions } from 'angular2-masonry';
 import { JwtHelper, AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
+import { MasonryOptions } from 'angular2-masonry';
 @Component({
       moduleId: module.id,
     selector: 'artwork',
-  templateUrl:'/app/artwork/searchartwork/artwork.html',
+  templateUrl:'/app/account/artist/artist.html',
     animations: [
         trigger('cardauth', [
             state('*', style({
@@ -33,36 +33,41 @@ import { JwtHelper, AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
         ]),
 
     ],
-         styles: [`
-       .brick { width: 330px; padding:10px; }
+       styles: [`
+       .brick { width: 310px; padding:10px; }
      `]
 
-
 })
-export class searchart {
+export class artistdetails {
       @Input()
-      id:any=0;
+      id:any="";
       sub:any;
       type:any;
       isloading:any;
-      artList:any;
+      artList:any={};
       public myOptions: MasonryOptions = { 
   transitionDuration: '0.8s' 
 };
+linkvar:any=[{val:"A"},{val:"b"},{val:"C"},{val:"D"},{val:"E"},{val:"F"},{val:"G"},
+            {val:"H"},{val:"I"},{val:"J"},{val:"K"},{val:"L"},{val:"M"},{val:"N"},
+            {val:"O"},{val:"P"},{val:"Q"},{val:"R"},{val:"S"},{val:"T"},{val:"U"},
+            {val:"V"},{val:"W"},{val:"X"},{val:"Y"},{val:"Z"}];
 loading: boolean = true;
+public selectedvalue:string="";
 urlstring="http://base.kmtrt.in/wallimages/imagepath/";
     constructor(private artservice:artservice, private jwtHelper:JwtHelper, private route:ActivatedRoute, private Router:Router) {
        this.sub = this.route.params.subscribe(params => {
-       this.id = +params['id'];
+       this.id = params['id'];
         console.log(this.id);
-         this.getAllArt(this.id);
-    });
-       
+       this.selectedvalue=this.id;
+        this.getAllArt(this.id);
+});
+     
     }
 
     getAllArt(id) {
         this.isloading = true;
-        this.artservice.getAllArtByTag(id).subscribe(x => {
+        this.artservice.getalluserinfo(id).subscribe(x => {
             console.log(x);
             this.artList = x.message;
             this.isloading = false;
@@ -72,38 +77,6 @@ urlstring="http://base.kmtrt.in/wallimages/imagepath/";
         });
     }
 
-  
-
-addtofav(item:any,id:any){
-     if (!localStorage.getItem('auth_key') || this.jwtHelper.isTokenExpired(localStorage.getItem('auth_key'))){
-            this.Router.navigate(['/account/login']);
-     }else{
-          this.isloading = true;
-        this.artservice.addtofav(id).subscribe(x => {
-            console.log(x);
-            item.isfav=true;
-            this.isloading = false;
-        }, error => {
-            Materialize.toast(error);
-                 this.isloading = false;
-        });
-     }
-}
-
-removefav(item:any,id:any){
-     if (!localStorage.getItem('auth_key') || this.jwtHelper.isTokenExpired(localStorage.getItem('auth_key'))){
-            this.Router.navigate(['/account/login']);
-     }else{
-          this.isloading = true;
-        this.artservice.removefav(id).subscribe(x => {
-            console.log(x);
-            item.isfav=false;
-            this.isloading = false;
-        }, error => {
-            Materialize.toast(error);
-                 this.isloading = false;
-        });
-     }
-}
+   
 
 }

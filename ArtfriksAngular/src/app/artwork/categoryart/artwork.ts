@@ -8,7 +8,7 @@ import { JwtHelper, AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
 @Component({
       moduleId: module.id,
     selector: 'artwork',
-  templateUrl:'/app/artwork/searchartwork/artwork.html',
+  templateUrl:'/app/artwork/categoryart/artwork.html',
     animations: [
         trigger('cardauth', [
             state('*', style({
@@ -34,17 +34,19 @@ import { JwtHelper, AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
 
     ],
          styles: [`
-       .brick { width: 330px; padding:10px; }
+       .brick { width: 300px; padding:10px; }
      `]
 
 
 })
-export class searchart {
+export class categoryart {
       @Input()
       id:any=0;
       sub:any;
       type:any;
       isloading:any;
+      cattitle:string="";
+      subcats:any;
       artList:any;
       public myOptions: MasonryOptions = { 
   transitionDuration: '0.8s' 
@@ -55,16 +57,18 @@ urlstring="http://base.kmtrt.in/wallimages/imagepath/";
        this.sub = this.route.params.subscribe(params => {
        this.id = +params['id'];
         console.log(this.id);
-         this.getAllArt(this.id);
-    });
-       
+        this.getAllArt(this.id);
+});
+        
     }
 
     getAllArt(id) {
         this.isloading = true;
-        this.artservice.getAllArtByTag(id).subscribe(x => {
+        this.artservice.getAllArtByCat(id).subscribe(x => {
             console.log(x);
             this.artList = x.message;
+            this.cattitle=x.categorytitle;
+            this.subcats=x.subcategories;
             this.isloading = false;
         }, error => {
             Materialize.toast(error);

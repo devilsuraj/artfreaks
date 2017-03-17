@@ -15,6 +15,9 @@ import {message} from './message/message';
 import {contactartist} from './contactartist/contactartist';
 import {bio} from './bio/bio';
 import {forgotpassword} from './forgotpassword/forgotpassword'
+import {artistsearch} from './artistsearch/artistsearch'
+import {artistsearchcountry} from './artistcountry/artistsearch'
+import {artistdetails} from './artist/artist'
 @NgModule({
     imports: [
         BrowserModule,
@@ -24,7 +27,7 @@ import {forgotpassword} from './forgotpassword/forgotpassword'
         RouterModule,
         CommonModule 
         ],
-        declarations: [ registration,loginComponent,bio,message,MaterializeDirective ,forgotpassword,profile,contactartist],
+        declarations: [ registration,loginComponent,artistdetails,artistsearchcountry,bio,message,artistsearch,MaterializeDirective ,forgotpassword,profile,contactartist],
         exports:[registration,contactartist,MaterializeDirective],
         providers:[JwtHelper]
 })

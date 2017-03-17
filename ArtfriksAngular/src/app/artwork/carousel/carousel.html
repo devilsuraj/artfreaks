@@ -69,9 +69,9 @@ amp; Buy from them <b>DIRECT!</b></div>
    </h4>
 <div class="col l12 center">
 <div class="col s12 m4 l4" *ngFor="let item of artList.styles"> 
-<div class="row">  <a href="paintingclick.html"> 
+<div class="row">   <a routerLink="/artbystyle/{{item.tagId}}"> 
   	<div class="col s12">
-		<img src="{{item.image}}" style=" height:200px; width: auto" >
+		<img src="{{item.image}}" style=" display: block; max-width:250px; max-height:200px; width: auto; height: auto" >
 	</div>
   </a>  </div>
 <div class="row"> <h5 class="black-text center">{{item.text}}</h5> </div>
@@ -96,9 +96,9 @@ amp; Buy from them <b>DIRECT!</b></div>
    </h4>
 <div class="col l12 center">
 <div class="col s12 m4 l4" *ngFor="let item of artList.category"> 
-<div class="row">  <a href="paintingclick.html"> 
+<div class="row">  <a routerLink="/artbycategory/{{item.catId}}"> 
   	<div class="col s12">
-		<img src="{{item.image}}" style=" height:200px; width: auto" >
+		<img src="{{item.image}}" style=" display: block; max-width:250px; max-height:200px; width: auto;" >
 	</div>
   </a>  </div>
 <div class="row"> <h5 class="black-text center">{{item.text}}</h5> </div>

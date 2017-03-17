@@ -8,7 +8,7 @@ import { JwtHelper, AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
 @Component({
       moduleId: module.id,
     selector: 'artwork',
-  templateUrl:'/app/artwork/searchartwork/artwork.html',
+  templateUrl:'/app/artwork/collectionart/artwork.html',
     animations: [
         trigger('cardauth', [
             state('*', style({
@@ -39,7 +39,7 @@ import { JwtHelper, AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
 
 
 })
-export class searchart {
+export class collectionart {
       @Input()
       id:any=0;
       sub:any;
@@ -55,7 +55,7 @@ urlstring="http://base.kmtrt.in/wallimages/imagepath/";
        this.sub = this.route.params.subscribe(params => {
        this.id = +params['id'];
         console.log(this.id);
-         this.getAllArt(this.id);
+         this.getAllArt(11);
     });
        
     }
