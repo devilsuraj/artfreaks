@@ -36,7 +36,7 @@ export class AppComponent  {
             this.sharedUserDetailsModel.username = this.token.user.fullName;
             this.sharedUserDetailsModel.isLoggedIn = true;
             this.authLoginService.broadcastTextChange(this.sharedUserDetailsModel);
-               Materialize.toast("Welcome " + data.message.user.fullName,3000 );
+             //  Materialize.toast("Welcome " + data.message.user.fullName,3000 );
         },
             error => {
             

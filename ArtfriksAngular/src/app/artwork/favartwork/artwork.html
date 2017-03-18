@@ -3,15 +3,14 @@
        <masonry-brick class="brick"  *ngFor="let item of artList">
       <a  class="left black-text"
              style="font-family:Century751 BT; font-style:italic; margin-top:-10px; cursor: pointer">
-              <img (click)="addtofav(item.artwork,item.artwork.id)" *ngIf="item.isfav" src="images/redheart.png" style="display:inline;" />
-              <img (click)="removefav(item.artwork,item.artwork.id)" *ngIf="!item.isfav" src="images/heart.png" style="display:inline;" />
+              <img (click)=" removefav(item.artwork,item.artwork.id)" *ngIf="item.isfav" src="images/redheart.png" style="display:inline;" />
+              <img (click)="addtofav(item.artwork,item.artwork.id)" *ngIf="!item.isfav" src="images/heart.png" style="display:inline;" />
                Favourite </a>
             <a routerLink="/art/{{item.artwork.id}}">    
                 <image 
                 [src]  ="urlstring + item.artwork.pictureUrl" 
                  [alt]="item.artwork.title"
                  [width]="''"></image>
-           
                  </a>
             <div class="card-content">
             <h6 class="left">{{item.artwork.title}}</h6> <h6 class="right">Price ${{item.artwork.price}}</h6> <br /> 

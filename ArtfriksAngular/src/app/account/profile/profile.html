@@ -6,8 +6,9 @@
         <div class="row"> 
         	<div class="my-profile">
                 <h4 style="font-family:'myriadPro cond';"> My Profile </h4>
-                <image *ngIf="!isloading" [src]="urlstring + model.pictureUrl" onerror="this.onerror=null;this.src='/images/user.png';"  class="responsive-img" alt=""></image>
-                  <div *ngIf="isloading" class="loader"></div>
+          <!--  <image *ngIf="!isloading" [src]="urlstring + model.pictureUrl" onerror="this.onerror=null;this.src='/images/user.png';"  class="responsive-img" alt=""></image>-->
+                <img *ngIf="!isloading" src="{{urlstring}}{{model.pictureUrl}}" onerror="this.onerror=null;this.src='/images/user.png';"  class="responsive-img" alt=""/>
+                  <loader *ngIf="isloading" ></loader>
             </div>
         </div>
         

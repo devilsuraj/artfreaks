@@ -10,19 +10,20 @@
                 </div>
                 <div class="input-field col s12 m9 l9">
                    <img  *ngIf="isimage" src="{{imgserver}}/WallImages/imagepath/thumb-{{ImagePath}}"/>
-                <fileDroppa
+                <fileDroppa style="cursor: pointer"
                     [url]="server"
                     [autoUpload]="true"
                     [showFilesList]="true"
                     [beforeRequest]="beforeRequest"
                     [beforeFileUpload]="beforeFileUpload"
                     [beforeAddFile]="beforeAddFile"
+                    [dropZoneTemplate]="dropZoneTemplate"
                     (filesUpdated)="filesUpdated($event)"
                     (fileUploaded)="fileUploaded($event)">
                </fileDroppa>
-                                   
                 </div>
             </div>
+            <div style="clear: both"></div>
             <div class="row">
                 <div class="input-field col s12 m3 l3">
                     <span class="lable"> Title of Artwork<sup>*</sup></span>
@@ -62,27 +63,35 @@
                         type="text" 
                     maxlength="3" class="validate box-style tel-code right"
                         type="text">
+<br/>
 
+                   
 
-                        <select class="dp browser-default validate box-style" required 
-                          
-                            [(ngModel)]="model.DimensionUnit"
-                      #DimensionUnit="ngModel" 
-                      name="DimensionUnit">
-                            <option *ngFor="let p of unitList" value="{{p.units}}" selected="">{{p.units}}</option>
-                        </select>
 
 
 
                 </div>
 
             </div>
-
+                 <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    <span class="lable"> Select Unit<sup>*</sup></span>
+                </div>
+                <div class="input-field col s12 m6 l6">
+                    <select class="dp browser-default validate box-style" required 
+                          
+                            [(ngModel)]="model.DimensionUnit"
+                      #DimensionUnit="ngModel" 
+                      name="DimensionUnit">
+                            <option *ngFor="let p of unitList" value="{{p.units}}" selected="">{{p.units}}</option>
+                        </select>
+                </div>
+            </div>
             <div class="row">
                 <div class="input-field col s12 m3 l3">
                     <span class="lable"> Medium<sup>*</sup></span>
                 </div>
-                <div class="input-field col s12 m9 l9">
+                <div class="input-field col s12 m6 l6">
                     <select class="browser-default dp validate box-style "
                      [(ngModel)]="model.MediumString"
                       #MediumString="ngModel" 
@@ -90,8 +99,36 @@
                         <option *ngFor="let p of MediumsList" value="{{p.mediums}}" >{{p.mediums}}</option>
                     </select>
                 </div>
-
             </div>
+
+             <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    <span class="lable"> Category<sup>*</sup></span>
+                </div>
+                <div class="input-field col s12 m9 l9">
+                    <select class="browser-default dp validate box-style "
+                     [(ngModel)]="model.categrory"
+                      #categrory="ngModel" 
+                      (change)="getSubCategories(model.categrory)"
+                      name="categrory"  required>
+                        <option *ngFor="let p of categroryList" value="{{p.id}}" >{{p.title}}</option>
+                    </select>
+                </div>
+            </div>
+               <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    <span class="lable">Sub Category<sup>*</sup></span>
+                </div>
+                <div class="input-field col s12 m9 l9">
+                    <select class="browser-default dp validate box-style "
+                     [(ngModel)]="model.subcategrory"
+                      #subcategrory="ngModel" 
+                      name="subcategrory"  required>
+                        <option *ngFor="let p of subcategroryList" value="{{p.id}}" >{{p.title}}</option>
+                    </select>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="input-field col s12 m3 l3">
                     <span class="lable"> Add Tags<sup>*</sup></span>

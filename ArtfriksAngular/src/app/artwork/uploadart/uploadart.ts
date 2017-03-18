@@ -32,7 +32,11 @@ declare var $:any;
             ])
         ]),
 
-    ]
+    ],
+    styles:[`.btns{display:none}
+    .btn-orange{display:none}
+    .btn-red{display:none}
+    .file-droppa-container{cursor:pointer}`]
 
 })
 export class uploadartwork {
@@ -46,6 +50,7 @@ export class uploadartwork {
     modeltags: ArtWithTag[];
     TagList: string = this.config.Server + "/api/artowrk/Tags?name=:keyword";
     categroryList: any = [];
+    subcategroryList: any = [];
     typeList:any=[];
     unitList:any=[];
     MediumsList:any=[];
@@ -77,6 +82,7 @@ export class uploadartwork {
     server = this.config.Server + "/picture/save";
     imgserver = this.config.Server;
     fileUploaded(data, response) {
+        $('.btns').hide();
         console.log(data);
         console.log(response);
         if (data) {
@@ -88,6 +94,7 @@ export class uploadartwork {
         }
     }
     uploadart(art:any){
+        art.category = art.subcategory;
         if(this.posttag.length>0){
           this.isloading = true;
           art.PictureUrl= this.ImagePath;
@@ -117,24 +124,35 @@ export class uploadartwork {
                 Materialize.toast("Please add descriptive tags");
         }
     }
+public dropZoneTemplate = `<div class='file-droppa-container' style='border:2px solid #ccc'>
+            <fileDropZone>
+                <div [innerHTML]='dropZoneTemplate'>Upload File</div>
+            </fileDropZone>
+            <br/>
+            <fileList *ngIf='showFilesList'></fileList>
+        </div>`;
 
     filesUpdated(files: any) {
-      
+      $('.btns').hide();
         console.log("Store state updated! Current state: ", files)
     }
 
     beforeRequest(xhr: any) {
         //xhr.setRequestHeader("Hello","World");
+        $('.btns').hide();
     }
 
 
     beforeFileUpload(formData: any) {
+            $('.btns').hide();
           this.isimage = false;
         return formData;
+    
     }
 
 
     beforeAddFile(file: any) {
+            $('.btns').hide();
         return true;
     }
 
@@ -144,6 +162,18 @@ export class uploadartwork {
         this.artservice.getCategories().subscribe(x => {
             console.log(x);
             this.categroryList = x;
+            this.isloading = false;
+        }, error => {
+            Materialize.toast(error);
+        });
+    }
+
+      getSubCategories(id) {
+        this.isloading = true;
+
+        this.artservice.getSubCategories(id).subscribe(x => {
+            console.log(x);
+            this.subcategroryList = x;
             this.isloading = false;
         }, error => {
             Materialize.toast(error);

@@ -11,12 +11,21 @@ import { Observable } from 'rxjs/observable';
 import {Configuration} from '../../services/app/app.config';
 @Component({
   selector:'profile',
-  templateUrl:'./app/account/bio/bio.html'
+  templateUrl:'./app/account/bio/bio.html',
+  styles:[`textarea {
+    overflow-y: scroll;
+    height: 100px;
+    resize: none; /* Remove this if you want the user to resize the textarea */
+}`]
 })
 export class bio{
     isloading:boolean=false;
     sharedUserDetailsModel:any={};
     token:any;
+    edit:boolean=false;
+    editer(){
+        this.edit=true;
+    }
     urlstring="http://base.kmtrt.in/wallimages/imagepath/";
     public model:biodata=new biodata();
         private subscription: Subscription;
@@ -82,15 +91,18 @@ fileChange(event) {
             if (data.status == 0) {
                 Materialize.toast("Updated Registerd...", 3000);
                 this.isloading = false;
+                  this.edit=false;
             }
             else {
                 Materialize.toast(data.message, 3000);
                 this.isloading = false;
+                    this.edit=false;
             }
         },
             error => {
                 Materialize.toast(error, 3000);
                 this.isloading = false;
+                    this.edit=false;
             });
     }
 

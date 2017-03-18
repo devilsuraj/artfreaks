@@ -38,7 +38,7 @@ export class profile{
             this.sharedUserDetailsModel.username = this.token.user.fullName;
             this.sharedUserDetailsModel.isLoggedIn = true;
             this.authLoginService.broadcastTextChange(this.sharedUserDetailsModel);
-               Materialize.toast("Welcome " + data.message.user.fullName,3000 );
+            //   Materialize.toast("Welcome " + data.message.user.fullName,3000 );
         },
             error => {
             
@@ -98,7 +98,7 @@ fileChange(event) {
             localStorage.removeItem("auth_key");
             localStorage.removeItem("refresh_key");
             this._parentRouter.navigate(['../']);
-            Materialize.toast("User Logged out Added Successfully",1000);
+            Materialize.toast("User Logged out  Successfully",1000);
     }
 
 }

@@ -121,6 +121,7 @@ removefav(item:any,id:any){
         this.artservice.removefav(id).subscribe(x => {
             console.log(x);
             item.isfav=false;
+            
             this.isloading = false;
         }, error => {
             Materialize.toast(error);

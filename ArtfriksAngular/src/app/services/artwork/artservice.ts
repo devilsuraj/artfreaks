@@ -218,13 +218,15 @@ export class artservice {
         }
     }
     getCategories(): Observable<any> {
-      
             return this.http.get(this._authUrl + "/api/artowrk/Categories", this.joptions)
                 .map(res => <any>res.json())
                 .catch(this.handleError);
-      
     }
-
+  getSubCategories(id:any): Observable<any> {
+            return this.http.get(this._authUrl + "/api/artowrk/Subcategories?id="+id, this.joptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+    }
     getTypes(): Observable<any> {
         if (localStorage.getItem("auth_key")) {
             let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") });
