@@ -222,6 +222,12 @@ export class artservice {
                 .map(res => <any>res.json())
                 .catch(this.handleError);
     }
+
+      getSpecialTags(name): Observable<any> {
+            return this.http.get(this._authUrl + "/api/artowrk/getspecialtags?name="+name, this.joptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+    }
   getSubCategories(id:any): Observable<any> {
             return this.http.get(this._authUrl + "/api/artowrk/Subcategories?id="+id, this.joptions)
                 .map(res => <any>res.json())

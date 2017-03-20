@@ -33,7 +33,7 @@ declare var $:any;
         ]),
 
     ],
-    styles:[`.btns{display:none}
+    styles:[`.btns{display:none; width:1px; height:1px; position:absolute;}
     .btn-orange{display:none}
     .btn-red{display:none}
     .file-droppa-container{cursor:pointer}`]
@@ -55,6 +55,7 @@ export class uploadartwork {
     unitList:any=[];
     MediumsList:any=[];
     posttag:tags[]=[];
+    specialTagList:any=[];
     PostTags:PostTags[]=[];
     constructor(private artservice: artservice, 
     private config: Configuration, 
@@ -66,6 +67,7 @@ export class uploadartwork {
         this.getTypes();
         this.getUnits();
         this.getMediums();
+        this.getTags();
     }
     addtag(data)
     {
@@ -75,6 +77,7 @@ export class uploadartwork {
         tag.tag=data.tag;
         console.log(tag);
         this.posttag.push(tag);
+        this.specialTagList.splice(this.specialTagList.indexOf(tag), 1);
         console.log(this.posttag.length);
         $('#auto').val('');
     }
@@ -126,7 +129,7 @@ export class uploadartwork {
     }
 public dropZoneTemplate = `<div class='file-droppa-container' style='border:2px solid #ccc'>
             <fileDropZone>
-                <div [innerHTML]='dropZoneTemplate'>Upload File</div>
+                <div>Upload File</div>
             </fileDropZone>
             <br/>
             <fileList *ngIf='showFilesList'></fileList>
@@ -162,6 +165,17 @@ public dropZoneTemplate = `<div class='file-droppa-container' style='border:2px 
         this.artservice.getCategories().subscribe(x => {
             console.log(x);
             this.categroryList = x;
+            this.isloading = false;
+        }, error => {
+            Materialize.toast(error);
+        });
+    }
+
+       getTags() {
+        this.isloading = true;
+        this.artservice.getSpecialTags("Special").subscribe(x => {
+            console.log(x);
+            this.specialTagList = x;
             this.isloading = false;
         }, error => {
             Materialize.toast(error);

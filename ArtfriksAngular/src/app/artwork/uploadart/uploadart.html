@@ -1,42 +1,34 @@
 <div class="container">
     <div class="col s12 m12 l12">
 
-        <form class="col s12 m12 l12"   
-        #uploadArt="ngForm" id="uploadArt" 
-      (ngSubmit)="uploadart(uploadArt.value)">
+        <form class="col s12 m12 l12" #uploadArt="ngForm" id="uploadArt" (ngSubmit)="uploadart(uploadArt.value)">
             <div class="row">
                 <div class="input-field col s12 m3 l3">
                     <span class="lable"> Upload Artwork<sup>*</sup></span>
                 </div>
                 <div class="input-field col s12 m9 l9">
-                   <img  *ngIf="isimage" src="{{imgserver}}/WallImages/imagepath/thumb-{{ImagePath}}"/>
-                <fileDroppa style="cursor: pointer"
-                    [url]="server"
-                    [autoUpload]="true"
-                    [showFilesList]="true"
+                    <img *ngIf="isimage" src="{{imgserver}}/WallImages/imagepath/thumb-{{ImagePath}}" />
+                    <fileDroppa style="cursor: pointer" 
+                    [url]="server" 
+                    [autoUpload]="true" 
+                    [showFilesList]="true" 
                     [beforeRequest]="beforeRequest"
-                    [beforeFileUpload]="beforeFileUpload"
-                    [beforeAddFile]="beforeAddFile"
-                    [dropZoneTemplate]="dropZoneTemplate"
-                    (filesUpdated)="filesUpdated($event)"
-                    (fileUploaded)="fileUploaded($event)">
-               </fileDroppa>
+                        [beforeFileUpload]="beforeFileUpload"
+                         [beforeAddFile]="beforeAddFile" 
+                         [dropZoneTemplate]="dropZoneTemplate"
+                        (filesUpdated)="filesUpdated($event)" 
+                        (fileUploaded)="fileUploaded($event)">
+                    </fileDroppa>
                 </div>
             </div>
-            <div style="clear: both"></div>
+
             <div class="row">
                 <div class="input-field col s12 m3 l3">
                     <span class="lable"> Title of Artwork<sup>*</sup></span>
                 </div>
                 <div class="input-field col s12 m9 l9">
-                    <input 
-                        [(ngModel)]="model.Title"
-                        #Title="ngModel" 
-                        id="Title" 
-                        name="Title" 
-                        type="text" 
-                        required
-                    class="validate box-style1" type="text">
+                    <input [(ngModel)]="model.Title" #Title="ngModel" id="Title" name="Title" type="text" required class="validate box-style1"
+                        type="text">
                 </div>
 
             </div>
@@ -46,84 +38,65 @@
                     <span class="lable"> DIMENSIONS<sup>*</sup></span>
                 </div>
                 <div class="input-field col s12 m9 l9">
-                    <input  maxlength="3" 
-                          [(ngModel)]="model.Width"
-                        #Width="ngModel" 
-                        id="Width" 
-                        name="Width" 
-                        required
-                        type="text" 
-                    class="validate box-style tel-code left" type="text" style="display:inline;">                    <span class="left" style="margin-right:30px;"> X  </span>
-                    <input
-                         [(ngModel)]="model.Height"
-                        #Height="ngModel" 
-                        id="Height" 
-                        name="Height" 
-                        required
-                        type="text" 
-                    maxlength="3" class="validate box-style tel-code right"
+                    <input maxlength="3" [(ngModel)]="model.Width" #Width="ngModel" id="Width" name="Width" required type="text" class="validate box-style tel-code left"
+                        type="text" style="display:inline;"> <span class="left" style="margin-right:30px;"> X  </span>
+                    <input [(ngModel)]="model.Height" #Height="ngModel" id="Height" name="Height" required type="text" maxlength="3" class="validate box-style tel-code right"
                         type="text">
-<br/>
-
-                   
-
-
-
-
                 </div>
-
             </div>
-                 <div class="row">
+
+            <div class="row">
                 <div class="input-field col s12 m3 l3">
                     <span class="lable"> Select Unit<sup>*</sup></span>
                 </div>
-                <div class="input-field col s12 m6 l6">
-                    <select class="dp browser-default validate box-style" required 
-                          
-                            [(ngModel)]="model.DimensionUnit"
-                      #DimensionUnit="ngModel" 
-                      name="DimensionUnit">
+                <div class="input-field col s12 m9 l9">
+                    <select class="dp browser-default validate box-style" required [(ngModel)]="model.DimensionUnit" #DimensionUnit="ngModel"
+                        name="DimensionUnit">
                             <option *ngFor="let p of unitList" value="{{p.units}}" selected="">{{p.units}}</option>
-                        </select>
+                    </select>
                 </div>
             </div>
+            <div style="clear: both"></div>
             <div class="row">
                 <div class="input-field col s12 m3 l3">
                     <span class="lable"> Medium<sup>*</sup></span>
                 </div>
-                <div class="input-field col s12 m6 l6">
-                    <select class="browser-default dp validate box-style "
-                     [(ngModel)]="model.MediumString"
-                      #MediumString="ngModel" 
-                      name="MediumString"  required>
+                <div class="input-field col s12 m9 l9">
+                    <select class="browser-default dp validate box-style " [(ngModel)]="model.MediumString" #MediumString="ngModel" name="MediumString"
+                        required>
                         <option *ngFor="let p of MediumsList" value="{{p.mediums}}" >{{p.mediums}}</option>
                     </select>
                 </div>
             </div>
+            <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    <span class="lable"> Price<sup>*</sup></span>
+                </div>
+                <div class="input-field col s12 m9 l9">
+                    <input [(ngModel)]="model.Price" #Price="ngModel" id="Title" name="Price" type="text" required class="validate box-style1"
+                        type="text">
+                </div>
 
-             <div class="row">
+            </div>
+            <div class="row">
                 <div class="input-field col s12 m3 l3">
                     <span class="lable"> Category<sup>*</sup></span>
                 </div>
                 <div class="input-field col s12 m9 l9">
-                    <select class="browser-default dp validate box-style "
-                     [(ngModel)]="model.categrory"
-                      #categrory="ngModel" 
-                      (change)="getSubCategories(model.categrory)"
-                      name="categrory"  required>
+                    <select class="browser-default dp validate box-style " [(ngModel)]="model.categrory" #categrory="ngModel" (change)="getSubCategories(model.categrory)"
+                        name="categrory" required>
                         <option *ngFor="let p of categroryList" value="{{p.id}}" >{{p.title}}</option>
                     </select>
                 </div>
             </div>
-               <div class="row">
+          
+            <div class="row">
                 <div class="input-field col s12 m3 l3">
                     <span class="lable">Sub Category<sup>*</sup></span>
                 </div>
                 <div class="input-field col s12 m9 l9">
-                    <select class="browser-default dp validate box-style "
-                     [(ngModel)]="model.subcategrory"
-                      #subcategrory="ngModel" 
-                      name="subcategrory"  required>
+                    <select class="browser-default dp validate box-style " [(ngModel)]="model.subcategrory" #subcategrory="ngModel" name="subcategrory"
+                        required>
                         <option *ngFor="let p of subcategroryList" value="{{p.id}}" >{{p.title}}</option>
                     </select>
                 </div>
@@ -132,40 +105,35 @@
             <div class="row">
                 <div class="input-field col s12 m3 l3">
                     <span class="lable"> Add Tags<sup>*</sup></span>
-                           </div>
-                <div class="input-field col s12 m9 l9" >
-                     <input auto-complete 
-                     id="auto"
-                      
-                      (valueChanged)="addtag($event)" 
-                    class="validate box-style"
-                       [source]="TagList" 
-                       list-formatter="tag" 
-                       placeholder="Enter Tag"  />
-          
-                        </div>
-                    <span class="right" style="margin-right:90px;">Adding tags will make your artwork easily searchable.</span>
-                     <div>
-                           <div  *ngFor="let p of posttag" class="chip">
-                                {{p.tag}}
-                                <i (click)="posttag.splice(posttag.indexOf(p), 1);" class="close material-icons">close</i>
-                            </div>
-                     </div>
+                </div>
+                <div class="input-field col s12 m9 l9">
+                    <input auto-complete id="auto" (valueChanged)="addtag($event)" class="validate box-style" [source]="TagList" list-formatter="tag"
+                        placeholder="Search Tags" />
+
+                </div>
+                <span class="right" style="margin-right:90px;">Adding tags will make your artwork easily searchable.</span>
             </div>
 
-          
-                <div class="row">
+            <div clas="row">
+                <div class=" col s12">
+                    <div *ngFor="let p of specialTagList" class="chip">
+                        {{p.tag}}
+                        <i (click)="addtag(p);" class="close material-icons">+</i>
+                    </div>
+                      <div *ngFor="let p of posttag" class="chip teal lighten-2">
+                        {{p.tag}}
+                        <i (click)="posttag.splice(posttag.indexOf(p), 1);" class="close material-icons">close</i>
+                    </div>
+                </div>
+            </div>
+            <div style="clear:both"></div>
+            <div class="row">
                 <div class="input-field col s12 m3 l3">
                     <span class="lable"> Description<sup>*</sup></span>
                 </div>
                 <div class="input-field col s12 m9 l9">
-                    <textarea id="Description"
-                    required
-                    [(ngModel)]="model.Description"
-                      #Description="ngModel" 
-                      name="Description" 
-                       class="tags materialize-textarea validate box-style"></textarea>
-     
+                    <textarea id="Description" required [(ngModel)]="model.Description" #Description="ngModel" name="Description" class="tags materialize-textarea validate box-style"></textarea>
+
                 </div>
             </div>
 
@@ -181,7 +149,7 @@ sell this work.</label>
                 </div>
             </div>
             <br>
-                  <loader [hidden]="!isloading"></loader>
+            <loader [hidden]="!isloading"></loader>
             <div class="row center">
                 <button type="submit" class="waves-effect waves-light btn white black-text " [disabled]="!isimage || !uploadArt.valid" style="border-top:1px solid #ccc; border-bottom:1px solid #ccc; "> Submit</button>
             </div>
