@@ -22,6 +22,7 @@ import {searchart} from "./searchartwork/artwork";
 import {categoryart} from './categoryart/artwork'
 import {dealsart} from './dealsart/artwork'
 import {collectionart} from './collectionart/artwork';
+import {testcomponent} from './testcomponent/testcomponent'
 import {artarticle} from './artarticles/artarticle';
 @NgModule({
     imports: [
@@ -36,7 +37,7 @@ import {artarticle} from './artarticles/artarticle';
         Ng2AutoCompleteModule,
         OwlModule
         ],
-        declarations: [carousel,searchart,artarticle,categoryart,collectionart,dealsart, artwork,uploadartwork,artdetails,favartwork ,myartwork],
+        declarations: [carousel,testcomponent,searchart,artarticle,categoryart,collectionart,dealsart, artwork,uploadartwork,artdetails,favartwork ,myartwork],
         exports:[],
         providers:[JwtHelper]
 })
