@@ -4,7 +4,7 @@
             <ul id="menulink" class="sub-menu">
                 <li class="hide-on-med-and-down" style="display: block; float: left; padding: 4px"  *ngFor="let item of linkvar"> 
                 <a  [class.red-text]="selectedvalue==item.val" 
-                 routerLink="/artistbylocation/{{item.val}}" style="display:inline;">{{item.val}}</a>  </li>
+                 routerLink="/artist/{{item.val}}" style="display:inline;">{{item.val}}</a>  </li>
             </ul>
         </div>
     </div>
@@ -13,16 +13,16 @@
 <div class="col s12 m4 l4" *ngFor="let item of artList">
     <div class="card-small myartwork">
         <div class="card-image">
-            <a routerLink="/artistprofile/{{item.user.id}}"> <img src="{{urlstring}}{{item.userbio.pictureUrl}}" class="responsive-img left"> </a>
-            <h6 class="center">{{item.user.fullName}}</h6>
-            <p class="center"><img src="images/paintings/ind.jpg" width="10" height="7" alt=""> {{item.user.city}}, {{item.user.country}}
-            <br> price range: {{item.minprice | currency}} - {{item.maxprice | currency}}
+            <a routerLink="/artistprofile/{{item.user.id}}"> <img src="{{urlstring}}thumb-{{item.userbio.pictureUrl}}" width="50"  class="circle responsive-img left"> </a>
+            <h6>{{item.user.fullName}}</h6>
+            <p class="center">{{item.user.city}}, {{item.user.country}}
+            <br> price range (USD): {{item.minprice }} - {{item.maxprice }}
             </p>
         </div>
         <div class="row">
             <div class="col s12 m12 l12">
                 <tr>
-                <td *ngFor="let item of item.arts"><img  src="{{urlstring}}{{item.pictureUrl}}" class="responsive-img" style="width:100px; height:60px;" alt=""></td>
+                <td *ngFor="let item of item.arts"><img  src="{{urlstring}}thumb-{{item.pictureUrl}}" class="responsive-img" style="width:60px; " alt=""></td>
                 </tr>
             </div>
         </div>

@@ -35,6 +35,11 @@ import { MasonryOptions } from 'angular2-masonry';
     ],
        styles: [`
        .brick { width: 310px; padding:10px; }
+       .myartwork {
+    border: 1px solid #5d5e5e!important;
+    padding: 2px 2px;
+}
+
      `]
 
 })

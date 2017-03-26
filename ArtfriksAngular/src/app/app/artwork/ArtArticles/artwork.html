@@ -1,0 +1,6 @@
+    <loader [hidden]="!isloading"></loader>
+<div class="article" *ngFor="let item of artList">
+        <h5> {{item.title}} - {{item.author}} </h5>        
+        <div  [innerHTML]="item.article"> </div>
+<a href="#" class="right black-text">  {{item.addedDate | date}}</a>
+   </div>

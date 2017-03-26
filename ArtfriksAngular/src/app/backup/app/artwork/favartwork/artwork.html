@@ -1,0 +1,24 @@
+    <loader [hidden]="!isloading"></loader>
+<masonry [options]="myOptions">
+       <masonry-brick class="brick"  *ngFor="let item of artList">
+      <a  class="left black-text"
+             style="font-family:Century751 BT; font-style:italic; margin-top:-10px; cursor: pointer">
+              <img (click)=" removefav(item.artwork,item.artwork.id)" *ngIf="item.isfav" src="images/redheart.png" style="display:inline;" />
+              <img (click)="addtofav(item.artwork,item.artwork.id)" *ngIf="!item.isfav" src="images/heart.png" style="display:inline;" />
+               Favourite </a>
+            <a routerLink="/art/{{item.artwork.id}}">    
+                <image 
+                [src]  ="urlstring + item.artwork.pictureUrl" 
+                 [alt]="item.artwork.title"
+                 [width]="''"></image>
+                 </a>
+            <div class="card-content">
+            <h6 class="left">{{item.artwork.title}}</h6> <h6 class="right">Price ${{item.artwork.price}}</h6> <br /> 
+            <div class="row"> <p style="margin-left:10px;"> by {{item.userId}}<br/>
+{{item.artwork.width}} X {{item.artwork.height}} {{item.artwork.dimensionUnit}} <br/>
+Mixed Media on Canvas  <a routerLink="/account/contact/{{item.id}}" class="waves-effect waves-light btn white black-text right" style="border:1px solid #000;
+ margin-top:-20px;">Contact Artist</a> 
+</p> </div></div>
+      </masonry-brick>
+     </masonry>
+  

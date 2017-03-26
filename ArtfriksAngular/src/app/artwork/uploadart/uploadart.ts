@@ -36,7 +36,21 @@ declare var $:any;
     styles:[`.btns{display:none; width:1px; height:1px; position:absolute;}
     .btn-orange{display:none}
     .btn-red{display:none}
-    .file-droppa-container{cursor:pointer}`]
+    .file-droppa-container{cursor:pointer}
+    .chip {
+  display: inline-block;
+  height: 32px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 32px;
+  padding: 0 12px;
+  background-color: #FFF;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  border:1px solid #CCC;
+}
+    `]
 
 })
 export class uploadartwork {
@@ -54,6 +68,9 @@ export class uploadartwork {
     typeList:any=[];
     unitList:any=[];
     MediumsList:any=[];
+    postkeyword:any=[];
+    posterkeyword:any=[];
+    custMedia:boolean=false;
     posttag:tags[]=[];
     specialTagList:any=[];
     PostTags:PostTags[]=[];
@@ -81,7 +98,17 @@ export class uploadartwork {
         console.log(this.posttag.length);
         $('#auto').val('');
     }
-
+checkmedia(param)
+{
+    if (param=="Others")
+    {this.custMedia=true;
+        this.model.MediumString=this.model.media;
+    }
+    else
+    {
+    this.custMedia=false;
+    }
+}
     server = this.config.Server + "/picture/save";
     imgserver = this.config.Server;
     fileUploaded(data, response) {
@@ -96,8 +123,17 @@ export class uploadartwork {
             this.isimage = true;
         }
     }
+    eventHandler(param:string){
+        param = param.replace(" ","");
+        if( param !="" ){
+        this.postkeyword.push({ word:param });
+        this.model.keyword="";
+        }else{
+             this.model.keyword="";
+        }
+    }
     uploadart(art:any){
-        art.category = art.subcategory;
+        art.category = art.subcategrory;
         if(this.posttag.length>0){
           this.isloading = true;
           art.PictureUrl= this.ImagePath;
@@ -108,15 +144,33 @@ export class uploadartwork {
             {
                     this.PostTags.push({artId:x.id,tagId:entry.id})
             }
+             for (let entry of this.postkeyword) 
+            {
+                    this.posterkeyword.push({artId:x.id,Keyword:entry.word})
+            }
                this.artservice.postArt(this.PostTags).subscribe(x => {
                     Materialize.toast(x.message);
                      this._parentRouter.navigate(['/']);
                         this.isloading = false;
+
+                        ///Post all keywords
+
+                     this.artservice.postKeywords(this.posterkeyword).subscribe(x => {
+                    Materialize.toast(x.message);
+                     this._parentRouter.navigate(['/']);
+                        this.isloading = false;
                }
-               ,error=>{
-    this.isloading = false;
-        this.handleError(error);
-               });
+                        ,error=>{
+                this.isloading = false;
+                    this.handleError(error);
+                        });
+
+                            /// end 
+               }
+                        ,error=>{
+                this.isloading = false;
+                    this.handleError(error);
+                        });
 
         }, error => {
                // this.isloading = false;
@@ -267,6 +321,8 @@ export class uploadartmodel {
     public UserId: any;
     public Price: any;
     public Width: any;
+    keyword:any;
+    media:any;
     public Height: any;
     public DimensionUnit: any;
     public MediumString: any;

@@ -1,0 +1,49 @@
+<div class="col s12 m12 l12">
+<div class="col m3 l3"> </div>
+<div class="col s12 m6 l6">
+<div class="row">
+<h4 class="center red-text" style="font-family:MyriadPro cond;"> Login </h4>
+    	<form 
+      #login="ngForm" id="login-form" 
+      (ngSubmit)="Login(login.value)"
+       class="text-left">
+ 	<div class="row">
+        <div class="input-field col s12 m2 l2">
+          <span class="lable"> Username</span>
+        </div>
+        <div class="input-field col s12 m9 l9">
+          <input 
+        
+          [(ngModel)]="model.userName"
+           #userName="ngModel" 
+           id="userName" 
+           name="userName" 
+           type="text" 
+           class="validate box-style">
+      	</div>
+      </div>
+       <div class="row">
+        <div class="input-field col s12 m2 l2">
+          <span class="lable"> Password</span>          
+        </div>
+        <div class="input-field col s12 m9 l9">
+          <input id="password" type="password" class="validate box-style" type="password" [(ngModel)]="model.password"  id="password" #password="ngModel" name="password" placeholder="password">
+      	</div>
+      </div>
+        <loader [hidden]="!isloading"></loader>
+   <div class="row center">
+     <div class="input-field col s12 m3 l3"> </div>
+      <div class="input-field col s12 m9 l9">
+<button class="waves-effect waves-light btn white black-text" href="artistpage.html" style="border-top:1px solid #ccc; border-bottom:1px solid #ccc;" [disabled]="!login.valid" ><i class="material-icons right">fast_forward</i>Login</button>
+<a routerLink="/account/password" class="white red-text" 
+
+ ><i class="material-icons right">fast_forward</i>Forgot Password</a>
+  </div>   
+    </div>  
+    </form>
+  </div> <!-- /login ends-->
+</div>
+
+<div class="col m3 l3"> </div>
+
+</div>

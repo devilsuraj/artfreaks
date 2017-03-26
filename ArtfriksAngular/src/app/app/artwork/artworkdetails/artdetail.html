@@ -1,0 +1,97 @@
+ <loader [hidden]="!isloading"></loader>
+<div class="col s12 m12 l12" [hidden]="isloading">
+
+
+<div class="col s12 m8 l8">
+
+<div class="row" *ngIf="art.art" >
+<div class="col s12 m12 l12">
+    <a  class="left black-text"
+             style="font-family:Century751 BT; font-style:italic; margin-top:-10px; cursor: pointer">
+              <img (click)="addtofav(art.art.artwork,art.art.artwork.id)" *ngIf="art.art.isfav" src="images/redheart.png" style="display:inline;" />
+              <img (click)="removefav(art.art.artwork,art.art.artwork.id)" *ngIf="!art.art.isfav" src="images/heart.png" style="display:inline;" />
+               Favourite </a>
+               <br/>
+                 <image 
+                [src]  ="urlstring + art.art.artwork.pictureUrl" 
+                 [alt]="art.art.artwork.title"
+                 [width]="''"></image>
+ </div>
+
+</div>
+<div class="row" *ngIf="art.art"> 
+<h5>other works by {{art.art.user}}...</h5>
+<div class="col s12 m12 l12">
+
+<div class="col s12 m2 l2" *ngFor="let p of art.artworks">
+  <a routerLink="/art/{{p.id}}">
+ <image 
+                [src]  ="urlstring +'thumb-'+p.pictureUrl" 
+                 [alt]="p.title"
+                 [width]="''"></image>
+  </a>
+   </div>
+
+ </div>
+</div>
+
+
+ </div> <!--left part-->
+<div class="col s12 m4 l4" *ngIf="art.art">  <!--right part-->
+
+      <div class="row">
+        <div class="col s12 m12 l12">
+          <div class="card" style="background-color:#e8e6da;">
+            <div class="card-content black-text">
+              <span class="card-title">{{art.art.artwork.title}}</span>
+              <p>
+by {{art.art.user}} <br />
+{{art.art.artwork.width}} X {{art.art.artwork.height}}48 {{art.art.artwork.dimensionUnit}} <br />
+{{art.art.artwork.mediumString}} <br />
+Created in {{art.art.artwork.addedDate | date}}  <br />
+Country: {{art.user.country}} <img src="images/paintings/ind.jpg" width="10" height="7" alt=""/></p>
+            </div>
+        
+          </div>
+          
+          <h5> Price: $  {{art.art.artwork.price}}</h5>
+        </div>
+      </div>
+      
+      
+      <div class="row"> 
+      <div class="col s12 m12 l12">
+        <img src="{{urlstring }}{{art.profile.pictureUrl}}" width="60" height="110" alt="" class="responsive-img" style="margin-left:10px;"/> 
+        
+        <a routerLink="/account/contact/{{art.art.artwork.id}}" class="black-text"> <h5>Contact Artsist </h5> </a>
+        
+        
+        <p> {{art.profile.bioData}} ... </p>
+
+<a href="userviewartistpage.html" class="red-text">+ Read More </a>
+        
+        </div>
+        </div>        
+        <div class="row">      
+         <div class="col s12 m12 l12"> <h5 class="grey-text">Share the Link </h5> <br />
+         <ul class="social">
+        <li> <a href="#"> <i class="fa fa-whatsapp fa-lg" aria-hidden="true"></i> </a></li>
+<li> <a href="#"> <i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a> </li>
+<li> <a href="#"> <i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i> </a></li>
+
+</ul>
+          </div>     
+     </div>
+ </div>
+</div>
+<div class="row center"> 
+<h5>other you may also like......</h5>
+<hr />
+<div class="col s12 m12 l12">
+<div class="col s12 m2 l2"><img src="images/cat4.jpg" width="200" height="220" class="responsive-img" alt=""/> </div>
+<div class="col s12 m2 l2"> <img src="images/cat5.jpg" width="200" height="220" class="responsive-img" alt=""/></div>
+<div class="col s12 m2 l2"><img src="images/cat2.jpg" width="350" height="220" class="responsive-img" alt=""/> </div>
+<div class="col s12 m2 l2"> <img src="images/real.jpg" width="400" height="220" class="responsive-img" alt=""/></div>
+<div class="col s12 m2 l2"><img src="images/feat1.jpg" width="300" height="220" class="responsive-img" alt=""/> </div>
+ </div>
+</div>

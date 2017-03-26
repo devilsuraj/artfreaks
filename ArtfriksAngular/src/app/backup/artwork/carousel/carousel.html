@@ -1,0 +1,125 @@
+<loader [hidden]="!isloading"></loader>
+
+<div class="row">
+
+  <div id="owl-demo">
+
+  </div>
+
+</div>
+<div class="row">
+  <div class="col l12">
+    <h2 style="text-align:center;">a <b>‘Non-Commission’</b> based Online Art Gallery</h2>
+    <div class="note2"><b>Find NEW</b> artists from around the world<br/> amp; Buy from them <b>DIRECT!</b></div>
+    <div class="right">
+      <a href="#" class="white btn black-text">
+        <u>GET TO KNOW MORE...</u>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="row center" style="margin-top:30px;">
+
+
+
+  <div class="col l12 center">
+
+    <div class="col s12 m6 l3 leftbord rightbord" *ngFor="let item of artList.homesection">
+      <div class="row">
+        <h5>{{item.title}} <br> {{item.title2}} </h5>
+        <p style="margin-left:10px;">{{item.description}}</p>
+      </div>
+      <div class="row center">
+        <a routerLink="{{item.sectiontype}}">
+          <img src="{{item.image}}" alt="item.title" style="margin-left:auto; margin-right:auto;" width="''" />
+        </a>
+      </div>
+      <div class="row center">
+        <a routerLink="{{item.sectiontype}}" style="text-align:left; font-family:Century751 No2 BT; font-weight:bold;" class="black-text"> {{item.textonButton}} </a>
+      </div>
+    </div>
+
+  </div>
+  <!--1st row-->
+
+</div>
+
+<div class="row center" style="margin-top:30px;">
+  <div class="col s12">
+    <hr style="border-top:1px dashed #CCC">
+    <h5> FEATURED... </h5>
+    <div class="col l12 center">
+      <div class="col s12 m4 l4" *ngFor="let item of artList.featured">
+        <div class="row">
+          <a routerLink="/artbystyle/12">
+            <div class="col s12">
+             <img src="{{item.image}}" style=" width: 100% ;  height:auto;"/>
+            </div>
+          </a>
+        </div>
+        <div class="row">
+          <h5 class="black-text center">{{item.text}}</h5>
+        </div>
+        <div class="row"><a href="#" style="font-weight:bold; font-size:10px;"> View Collection </a> </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--featured products-->
+
+
+<div class="row center" style="margin-top:30px;">
+  <div class="col s12">
+    <hr style="border-top:1px dashed #CCC">
+
+    <img src="images/AFG_Logo.jpg" class="responsive-img left" style="display: inline; padding: 10px" alt="" />
+    <h5 class="bt" style="font-style:italic;">... by Style
+    </h5>
+    <div class="col l12 center">
+      <div class="col s12 m4 l4" *ngFor="let item of artList.styles">
+        <div class="row">
+          <a routerLink="/artbystyle/{{item.tagId}}">
+            <div class="col s12">
+            <img src="{{item.image}}" style=" display: block;  width: 100% ;  height:auto;"> 
+            </div>
+          </a>
+        </div>
+        <div class="row">
+          <h5 class="black-text center">{{item.text}}</h5>
+        </div>
+        <div class="row"><a href="#" style="font-weight:bold; font-size:10px;"> View Collection </a> </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Art by Style 2nd row -->
+
+<div class="row center" style="margin-top:30px;">
+  <div class="col s12">
+    <hr style="border-top:1px dashed #CCC">
+    <!--<h4 class="bt" style="font-style:italic;">
+   <img src="images/logo1.png" class="responsive-img" width="150" height="33" alt=""/> ... by Style 
+   </h4> -->
+    <img src="images/AFG_Logo.jpg" class="responsive-img left" alt=""  style="padding: 10px"/>
+    <h5 class="bt" style="font-style:italic;"> ... by Category </h5>
+    <div class="col l12 center">
+      <div class="col s12 m4 l4" *ngFor="let item of artList.category">
+        <div class="row">
+          <a routerLink="/artbycategory/{{item.catId}}">
+            <div class="col s12">
+            <img src="{{item.image}}" style="display: block; width: 100% ;  height:auto;"> 
+            </div>
+          </a>
+        </div>
+        <div class="row">
+          <h5 class="black-text center">{{item.text}}</h5>
+        </div>
+        <div class="row"><a href="#" style="font-weight:bold; font-size:10px;"> View Collection </a> </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Art by category1-->

@@ -5,7 +5,7 @@
              style="font-family:Century751 BT; font-style:italic; margin-top:-10px; cursor: pointer">
               <img (click)=" removefav(item.artwork,item.artwork.id)" *ngIf="item.isfav" src="images/redheart.png" style="display:inline;" />
               <img (click)="addtofav(item.artwork,item.artwork.id)" *ngIf="!item.isfav" src="images/heart.png" style="display:inline;" />
-               Favourite </a>
+                {{item.favcount}} </a>
             <a routerLink="/art/{{item.artwork.id}}">    
                 <image 
                 [src]  ="urlstring + item.artwork.pictureUrl" 

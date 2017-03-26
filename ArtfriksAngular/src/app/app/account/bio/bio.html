@@ -1,0 +1,31 @@
+
+
+
+
+<div class="row"> 
+  <router-outlet></router-outlet>
+<h4 style="font-family:'myriadPro cond';"> Bio Data </h4> 
+<input type="hidden" [(ngModel)]="model.pictureUrl"/>
+<p class="" *ngIf="edit"> A brief write up about you. Your education, shows, exhibitions, grants received etc. </p>
+        <div class="input-field col s12 artist-pg">
+          <div *ngIf="!edit" [innerHTML]="model.bioData" ></div>
+          <textarea *ngIf="edit" id="biodata"[(ngModel)]="model.bioData" class="materialize-textarea box-style-2"></textarea>
+        </div>      
+    <a *ngIf="edit" (click)="putUser(model)" class="waves-effect waves-light btn white black-text right"><i class="material-icons right">mode_edit</i>Save</a>
+    <a  *ngIf="!edit" class="btn-flat" (click)="editer()"><i class="material-icons right">mode_edit</i>Edit</a>
+</div>
+
+<!-- /bio data-->
+
+<div class="row"> 
+<h4 style="font-family:'myriadPro cond';"> About My Art </h4> 
+<p class="" *ngIf="edit"> A brief write up about you. Your education, shows, exhibitions, grants received etc.</p>
+        <div class="input-field col s12 artist-pg">
+             <div *ngIf="!edit">{{model.userBrief}}</div>
+          <textarea *ngIf="edit" id="aboutart" [(ngModel)]="model.userBrief" class="materialize-textarea box-style-2"></textarea>
+        </div>      
+    <a *ngIf="edit"  (click)="putUser(model)" class="waves-effect waves-light btn white black-text right"><i class="material-icons right">mode_edit</i>Save</a>
+    <a  *ngIf="!edit" class="btn-flat" (click)="editer()"><i class="material-icons right">mode_edit</i>Edit</a>
+</div>
+
+ 

@@ -5,6 +5,7 @@ import * as Materialize from "angular2-materialize";
 import { Router } from '@angular/router';
 import { MasonryOptions } from 'angular2-masonry';
 import { JwtHelper, AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
+declare var $:any;
 @Component({
       moduleId: module.id,
     selector: 'artwork',
@@ -45,6 +46,7 @@ export class myartwork {
       sub:any;
       type:any;
       isloading:any;
+      model:any={}
       artList:any;
             public myOptions: MasonryOptions = { 
   transitionDuration: '0.8s' 
@@ -59,7 +61,10 @@ urlstring="http://base.kmtrt.in/wallimages/imagepath/";
                  this.getmyArt();
         
     }
-
+openmodal(item){
+    this.model=item; 
+    $('#modal1').openModal();
+}
     getAllArt() {
         this.isloading = true;
         this.artservice.getAllMyArt().subscribe(x => {
@@ -72,6 +77,20 @@ urlstring="http://base.kmtrt.in/wallimages/imagepath/";
         });
     }
 
+
+deleteart(id){
+
+      this.isloading = true;
+        this.artservice.deleteArt(id).subscribe(x => {
+            console.log(x);
+            this.artList = x.message;
+            this.isloading = false;
+              this.getmyArt();
+        }, error => {
+            Materialize.toast(error);
+                 this.isloading = false;
+        });
+}
      getmyArt() {
         this.isloading = true;
         this.artservice.getAllMyArt().subscribe(x => {

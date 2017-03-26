@@ -70,6 +70,20 @@ export class artservice {
      
     }
 
+    getAllArtByName(id): Observable<any> {
+        if (localStorage.getItem("auth_key")) {
+            let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") });
+            let Authoptions = new RequestOptions({ headers: authheaders });
+            return this.http.get(this._authUrl + "/api/artowrk/artbyname?name="+id,Authoptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+        }
+              return this.http.get(this._authUrl + "/api/artowrk/artbyname?name="+id,this.joptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+     
+    }
+
     getAllArtByCat(id): Observable<any> {
         if (localStorage.getItem("auth_key")) {
             let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key") });
@@ -293,9 +307,39 @@ export class artservice {
                 .catch(this.handleError);
         }
     }
+
+    updateArt(Param: any): Observable<any> {
+        let body = JSON.stringify(Param);
+        if (localStorage.getItem("auth_key")) {
+            let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key"), 'Content-Type': 'application/json' });
+            let Authoptions = new RequestOptions({ headers: authheaders });
+            return this.http.post(this._authUrl + "/api/artowrk/updateArt", body, Authoptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+        }
+    }
+
+     deleteArt(Param: any): Observable<any> {
+        let body = JSON.stringify(Param);
+        if (localStorage.getItem("auth_key")) {
+            let authheaders = new Headers({ "Authorization": "Bearer " + localStorage.getItem("auth_key"), 'Content-Type': 'application/json' });
+            let Authoptions = new RequestOptions({ headers: authheaders });
+            return this.http.post(this._authUrl + "/api/artowrk/deleteArt?id="+ Param, Authoptions)
+                .map(res => <any>res.json())
+                .catch(this.handleError);
+        }
+    }
+
     postArt(Param: any): Observable<any> {
         let body = JSON.stringify(Param);
         return this.http.post(this._authUrl + "/api/artowrk/PostTags", body, this.joptions)
+            .map(res => <any>res.json())
+            .catch(this.handleError);
+    }
+
+     postKeywords(Param: any): Observable<any> {
+        let body = JSON.stringify(Param);
+        return this.http.post(this._authUrl + "/api/artowrk/PostKeywords", body, this.joptions)
             .map(res => <any>res.json())
             .catch(this.handleError);
     }

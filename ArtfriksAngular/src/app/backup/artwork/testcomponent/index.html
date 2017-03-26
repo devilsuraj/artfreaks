@@ -1,0 +1,17 @@
+<div>
+    <h1 >
+{{stringValue}}
+</h1>
+<ul>
+    <li *ngFor="let item of newval">
+        {{item.val}} | {{item.Int}}
+    </li>
+</ul>
+</div>
+<input type="text" [(ngModel)]="model.val"/>
+<input type="text" [(ngModel)]="model.Int"/>
+<button (click)="submit(model)">Submit</button>
+
+
+<button (click)="hello()">Hit for hello</button>
+<button (click)="bye()">Hit for bye</button>

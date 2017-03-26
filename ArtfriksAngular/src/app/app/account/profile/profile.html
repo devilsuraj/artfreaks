@@ -1,0 +1,62 @@
+<div class="col l12">
+<div class="col s12 m6 l3">
+        <div class="row">
+        <div class="col l12 s12">
+        
+        <div class="row"> 
+        	<div class="my-profile">
+                <h4 style="font-family:'myriadPro cond';"> My Profile </h4>
+          <!--  <image *ngIf="!isloading" [src]="urlstring + model.pictureUrl" onerror="this.onerror=null;this.src='/images/user.png';"  class="responsive-img" alt=""></image>-->
+                <img *ngIf="!isloading" src="{{urlstring}}{{model.pictureUrl}}" onerror="this.onerror=null;this.src='/images/user.png';"  class="responsive-img" alt=""/>
+                  <loader *ngIf="isloading" ></loader>
+            </div>
+        </div>
+        
+        <div class="row">
+        
+          <form action="#">
+            <div class="file-field input-field">
+                <div class="btn white black-text" style="border-top:1px solid #ccc; border-bottom:1px solid #ccc;">
+                <span>+ Upload Picture</span>
+                <input type="file"(change)="fileChange($event)">
+              </div>
+            
+            </div>
+          </form>
+          <br />  <br />
+           <form action="#">
+            <div class="collection" style="font-family:Century751 Italic BT; font-style:italic; font-size:13px;border:none; width:80%;">
+            	<a routerLink="/account/profile" class="black-text" style="padding:5px 0; float:left; width:100%;">My Profile</a><br/>
+                <a routerLink="myart" class="black-text" style="padding:5px 0; float:left; width:100%;">My Artworks</a><br/>
+                <a routerLink="favourites" style="padding:5px 0; float:left; width:100%;">My favourites</a><br/>
+                <a  class="black-text" style="padding:5px 0; float:left; width:100%;">My Purchases</a><br/>
+                <a routerLink="inbox" class="black-text" style="padding:5px 0; float:left; width:100%;">Message/Inbox </a>
+                <a (click)="Logout()"  class=" black-text" style="cursor:pointer; padding:5px 0; float:left; width:100%;">Logout</a>
+    		</div>
+         
+          </form>
+               <br />   
+               
+                 <form action="#">
+            <div class="file-field input-field">
+                <div routerLink="/uploadart" class="btn white black-text" style=" border-top:1px solid #ccc; border-bottom:1px solid #ccc;">
+              + Upload an artwork
+              </div>
+            
+            </div>
+          </form>  
+        <br /> <br />
+          
+         </div>
+        
+        
+         </div>
+        </div>
+ </div> <!-- l2 closed-->
+
+<div class="col s12 m6 l9">
+  <router-outlet></router-outlet>
+
+
+ </div>  <!--l10 closed-->
+</div>

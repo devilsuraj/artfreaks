@@ -1,0 +1,26 @@
+
+<ul id="dropdown1" class="dropdown-content">
+<!--<li><a href="#!">My Profile</a></li>-->
+
+<li  style="cursor: pointer"> <a routerLink="/account/profile">Profile</a></li>
+<li  style="cursor: pointer"> <a routerLink="/account/inbox">Inbox</a></li>
+<li  style="cursor: pointer"> <a routerLink="/account/favourites">Favourites</a></li>
+<li  style="cursor: pointer"> <a routerLink="/account/myart">My Artworks</a></li>
+<li  style="cursor: pointer"> <a (click)="Logout()" routerLink="">Logout</a></li>
+
+
+  
+
+</ul>
+
+<li *ngIf="!token.isLoggedIn"><span class="red-text" style="font-style:italic; font-size:30px; font-weight:bold;"> ! </span> </li>
+<li *ngIf="!token.isLoggedIn"><a class="black-text" routerLink="/account/registration">Register</a></li>
+<li *ngIf="!token.isLoggedIn" class="black-text"><a class="black-text" routerLink="/account/login">Sign in</a></li>
+
+<li *ngIf="token.isLoggedIn" class="hide-on-med-and-down"> <a>
+<span style="font-family:Kefa; font-style:italic; color:red; font-size:24px;"> 
+    ! </span><span style="color:#000">{{token.username}}</span> </a><p class="note">Logged in as</p>
+       </li>
+       <li  materialize="dropdown"  class="dropdown-button"  data-activates="dropdown1" style="cursor:pointer" > <i class="material-icons">account_circle</i></li>
+    <!--<li *ngIf="token.isLoggedIn" class="black-text" style="cursor: pointer"><a class="black-text" (click)="Logout()"><label>Logout</label></a></li> -->
+  

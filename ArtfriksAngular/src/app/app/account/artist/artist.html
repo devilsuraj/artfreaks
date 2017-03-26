@@ -1,0 +1,58 @@
+<loader [hidden]="!isloading"></loader>
+<div *ngIf="!artList.userbio">
+    No results found
+</div>
+<div *ngIf="artList.userbio" class="col s12 m4 l4">
+     <div class="row">
+         <div class="col s12 m12 l12">
+            <div class="artist-info-box">
+            	<img class="circle" src="{{urlstring}}{{artList.userbio.pictureUrl}}" alt="{{artList.user.fullName}}" class="responsive-img">
+                <div class="name"><h4>{{artList.userbio.fullName}}</h4><h6><img src="images/flag-india.png" class="responsive-img">
+                 {{artList.user.city}}, {{artList.user.country}}</h6></div>
+            </div>
+         </div>
+     </div>
+       
+     <div class="row">
+         <div class="col s12 m12 l12">
+         	<div class="artist-sub-head">ARTIST STATEMENT</div>
+            <div class="artist-statement-box">
+            <p>{{artList.userbio.userBrief}}</p>
+            </div>
+       	</div>
+     </div>
+     
+      <div class="row">
+         <div class="col s12 m12 l12">
+         	<div class="artist-sub-head">BIODATA</div>
+            <div class="artist-biodata-box">
+            <p>{{artList.userbio.bioData}}</p>
+            </div>
+       	</div>
+     </div>
+</div>
+<div *ngIf="artList.userbio" class="col s12 m8 l8">
+    <masonry [options]="myOptions">
+       <masonry-brick class="brick"  *ngFor="let item of artList.arts">
+      <a  class="left black-text"
+             style="font-family:Century751 BT; font-style:italic; margin-top:-10px; cursor: pointer">
+              <img (click)="addtofav(item,item.id)" *ngIf="item.isfav" src="images/redheart.png" style="display:inline;" />
+              <img (click)="removefav(item,item.id)" *ngIf="!item.isfav" src="images/heart.png" style="display:inline;" />
+               Favourite </a>
+            <a routerLink="/art/{{item.id}}">    
+                <image 
+                [src]  ="urlstring + item.pictureUrl" 
+                 [alt]="item.title"
+                 [width]="''"></image>
+           
+                 </a>
+            <div class="card-content">
+            <h6 class="left">{{item.title}}</h6> <h6 class="right">Price ${{item.price}}</h6> <br /> 
+            <div class="row"> <p style="margin-left:10px;"> by {{item.userId}}<br/>
+{{item.width}} X {{item.height}} {{item.dimensionUnit}} <br/>
+Mixed Media on Canvas  <a routerLink="/account/contact/{{item.id}}" class="waves-effect waves-light btn white black-text right" style="border:1px solid #000;
+ margin-top:-20px;">Contact Artist</a> 
+</p> </div></div>
+      </masonry-brick>
+     </masonry>
+</div>

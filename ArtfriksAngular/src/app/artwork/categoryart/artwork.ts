@@ -35,6 +35,7 @@ import { JwtHelper, AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
     ],
          styles: [`
        .brick { width: 300px; padding:10px; }
+       .selected{font-size:20px; border-top:1px solid #ccc; border-bottom:1px solid #ccc; margin-left: -20px}
      `]
 
 
@@ -48,6 +49,8 @@ export class categoryart {
       cattitle:string="";
       subcats:any;
       artList:any;
+      firstvalue:any;
+      selectedvalue:any;
       public myOptions: MasonryOptions = { 
   transitionDuration: '0.8s' 
 };
@@ -56,11 +59,18 @@ urlstring="http://base.kmtrt.in/wallimages/imagepath/";
     constructor(private artservice:artservice, private jwtHelper:JwtHelper, private route:ActivatedRoute, private Router:Router) {
        this.sub = this.route.params.subscribe(params => {
        this.id = +params['id'];
+       this.selectedvalue=this.id;
+       this.firstvalue=this.id;
         console.log(this.id);
-        this.getAllArt(this.id);
+     
 });
-        
+       this.getAllArt(this.id);    
     }
+
+getnewvalue(id){
+    this.selectedvalue=id;
+     this.getAllArt2(id);
+}
 
     getAllArt(id) {
         this.isloading = true;
@@ -69,6 +79,20 @@ urlstring="http://base.kmtrt.in/wallimages/imagepath/";
             this.artList = x.message;
             this.cattitle=x.categorytitle;
             this.subcats=x.subcategories;
+            this.isloading = false;
+        }, error => {
+            Materialize.toast(error);
+                 this.isloading = false;
+        });
+    }
+
+        getAllArt2(id) {
+        this.isloading = true;
+        this.artservice.getAllArtByCat(id).subscribe(x => {
+            console.log(x);
+            this.artList = x.message;
+           // this.cattitle=x.categorytitle;
+           // this.subcats=x.subcategories;
             this.isloading = false;
         }, error => {
             Materialize.toast(error);

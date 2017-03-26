@@ -1,49 +1,71 @@
-   <nav class="navbar navbar-fixed">
+   <nav class="navbar navbar-fixed ">
    <div class="container">
-  <div  class="navi nav-wrapper white" > <a href="index.html" class="brand-logo"><img src="images/logo.png" class="responsive-img center" alt=""/></a>
+  <div  class="navi nav-wrapper white" > <a routerLink="/" class="brand-logo"><img src="images/logo.png" width="150px" alt=""/></a>
     <a href="#" data-activates="mobile-demo" class="button-collapse black-text"><i class="material-icons">menu</i></a>
-   <div class="search-area hide-on-med-and-down valign-wrapper">
-     <input id="search" class="valign" type="text" required><i class="material-icons red white-text valign center right" style="margin-top:0px;">search</i></div>
-      <ul class="social right hide-on-med-and-down rightpad">
+   <!--<div class="search-area hide-on-med-and-down valign-wrapper">
+     <input id="search" class="valign" type="text" required><i class="material-icons red white-text valign center right" style="margin-top:0px;">search</i></div>-->
+      <ul class="social rightrightpad  hide-on-med-and-down ">
+          <li class="search">
+          <form>
+        <div>
+          <input [(ngModel)]="model.search" #search="ngModel" name="search" id="search" type="text" required="">
+          <i class="material-icons red white-text center right" routerLink="/searchart/{{model.search}}">search</i>
+     
+        </div>
+      </form>
+        </li>
        <authorize-nav></authorize-nav>   
          <li> <a href="artworks.html">  <img src="images/notsure2.png" class="responsive-img" width="52px" alt=""/></a> </li>
       </ul>
        <!--mobile menu-->
-       <ul id="mobile-demo" class="side-nav show-on-small">
+     <ul id="mobile-demo" class="side-nav show-on-medium-and-down" style="transform: translateX(0%); display:none;">
+   
          <li class="search"><input id="search"></li>
          <li class="no-padding">
-            <ul class="collapsible collapsible-accordion">
-                <li class="bold"><a class="collapsible-header waves-effect waves-grey darken-2">Art</a>
-                <div class="collapsible-body">
-                     <ul >
-                         <li *ngFor="let p of categroryList"><a routerLink="/artbycategory/{{p.id}}" >{{p.title}}</a></li>
-                     </ul>
-                </div>
-                </li>
-                <li class="bold"><a class="collapsible-header  waves-effect waves-grey darken-2">Art Deals</a></li>
-                <li class="bold active"><a class="collapsible-header waves-effect waves-grey darken-2 active">Artist</a>
-                    <div class="collapsible-body" style="display: block;">
-                        <ul>
-                            <li><a routerLink="/artist/A">By Name</a></li>
-               <li><a routerLink="/artistbylocation/A">By Location</a></li>
-                         </ul>
-                    </div>
-                </li>
+          <ul materialize="collapsible" class="collapsible collapsible-accordion">
+          <li class="bold active"><a class="collapsible-header waves-effect waves-grey darken-2 active">Art</a>
+              <div class="collapsible-body" style="display: block;">
+                <ul>
+               <li><a routerLink="/artist/A">Paintings</a></li>
+               <li><a routerLink="/artistbylocation/A">Drawings</a></li>
                 </ul>
-                </li>
-          <li><a routerLink="/artwork" >*NEW Additions</a> </li>
-       <li><a routerLink="/aboutus" >About Us</a> </li>
-       <li><a routerLink="/artarticle" >Art Articles</a> </li>
-       <li><a routerLink="/artcollection" ><img src="images/AFG_Logo1.jpg" alt="" class="responsive-img"/> Collection</a> </li>
-       <li class="" style="padding-right:10px;"> <a class="white-text" routerLink="/account/profile/favourites"> <i class="fa fa-heart" aria-hidden="true"></i></a></li>
-      <li class="" style="padding-right:0px;"> <a routerLink="/account/profile" class="white-text"> <i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+              </div>
+            </li>
+            <li class="bold"><a class="collapsible-header  waves-effect waves-grey darken-2">Art Deals</a> </li>
+              
+          
+            <li class="bold active"><a class="collapsible-header waves-effect waves-grey darken-2 active">Artist</a>
+              <div class="collapsible-body" style="display: block;">
+                <ul>
+               <li><a routerLink="/artist/A">By Name</a></li>
+               <li><a routerLink="/artistbylocation/A">By Location</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+       
+
+                <li class="bold"><a routerLink="/artwork" href="#.html" class="waves-effect waves-grey darken-2">New Additions</a></li>
+        <li class="bold"><a routerLink="/aboutus" href="#.html" class="waves-effect waves-grey darken-2">About Us</a></li>
+                <li class="bold"><a routerLink="/artarticle" href="#.html" class="waves-effect waves-grey darken-2">Art Articles</a></li>
+                
+                   <li class="bold"><a  routerLink="/artcollection" href="#.html" class="waves-effect waves-grey darken-2">Art Articles</a></li>
+                   <li class="bold"><a routerLink="/artcollection" href="#.html" class="waves-effect waves-grey darken-2"><img src="images/AFG_Logo1.jpg" alt="" class="responsive-img"/> Collection</a></li>
+                
+                   <li class="bold"><a href="#.html" class="waves-effect waves-grey darken-2">Register</a></li>
+                      <li class="bold"><a href="#.html" class="waves-effect waves-grey darken-2">Login</a></li>
+              
+                            <li class="bold"><a href="#.html" class="waves-effect waves-grey darken-2">My Account</a></li>
+            <li>     <a  href="#"> <i class="material-icons">  shopping_basket</i> </a ></li>
+              
 
         	</ul> 
           
          </div>
           </div>
     </nav>
-    <nav>
+    <nav class=" hide-on-med-and-down ">
      <div class="navigation grey darken-1 hide-on-med-and-down" style="text-align:center;">
      <div class="container ">
         <ul>
@@ -69,8 +91,5 @@
   </div>
   </div>
 </nav>
-            <!-- <div class="">-->
-         
-            <!--</div>-->
-       
+              
    

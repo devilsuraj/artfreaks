@@ -78,10 +78,11 @@ export class registration {
         creds.CountryCode="+"+creds.CountryCode;
         this.onebtnText = "Loading...";
         this.isloading = true;
-         /* creds.Longitude=   this.model.Longitude;
+         /*   creds.Longitude=   this.model.Longitude;
             creds.Latitude=this.model.Latitude ;
             creds.FormattedAddress=this.model.FormattedAddress;*/
             creds.fullName=this.model.FirstName + " " + this.model.LastName;
+        creds.PinCode=this.model.pin;
          this._authservice.Register(creds)
             .subscribe(
             Ttoken => {

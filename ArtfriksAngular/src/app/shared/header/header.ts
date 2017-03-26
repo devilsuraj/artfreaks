@@ -10,6 +10,7 @@ declare var $:any;
 export class header{
   constructor(private artservice:artservice){}
   		categroryList:any;
+          model:any={};
       isloading:any;
        		ngOnInit(){
            	$(".button-collapse").sideNav();

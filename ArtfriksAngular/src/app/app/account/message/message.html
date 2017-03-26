@@ -1,0 +1,36 @@
+<div class="row">
+    	<h4 style="font-family:'myriadPro cond';"> Messages / Inbox... </h4> 
+        <div class="col l12">
+         
+     
+        <ul  materialize="collapsible"  class="collapsible" data-collapsible="accordion">
+            <li *ngFor="let item of messages">
+              <div class="collapsible-header">From: {{item.from}} Date: {{item.message.addedDate | date}}</div>
+              <div class="collapsible-body" >
+              	<span>From: {{item.from}} </span>
+                <span>Date: {{item.message.addedDate | date}}</span>
+                <p >{{item.message.message}}</p>
+             
+                <a (click)="getmessagereply(item)" style="cursor: pointer">View Conversation </a>
+                <loader *ngIf="isloading"></loader>
+                   <li *ngFor="let p of item.replies">
+                     	<span>From: {{p.from}} </span>
+                <span>Date: {{p.message.addedDate | date}}</span>
+                <p >{{p.message.message}}</p>
+                </li>
+                 <form >
+                    <div class="row">
+                        <div class="input-field col s12">
+                        <textarea id="textarea1" [(ngModel)]="messagemodel.message" name="Message" class="materialize-textarea"></textarea>
+                        </div>
+                    </div>
+                    <button (click)="sendmessage(item,messagemodel.message)" class="btn btn-flat" style="margin-left:280px;"> Send </button>
+                </form>
+              
+              </div>
+             
+            </li>
+             
+         </ul>
+        </div>
+    </div>

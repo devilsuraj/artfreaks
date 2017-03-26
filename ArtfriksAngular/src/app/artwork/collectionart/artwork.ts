@@ -39,6 +39,7 @@ import { JwtHelper, AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
 
 
 })
+
 export class collectionart {
       @Input()
       id:any=0;

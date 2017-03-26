@@ -38,10 +38,11 @@
                     <span class="lable"> DIMENSIONS<sup>*</sup></span>
                 </div>
                 <div class="input-field col s12 m9 l9">
-                    <input maxlength="3" [(ngModel)]="model.Width" #Width="ngModel" id="Width" name="Width" required type="text" class="validate box-style tel-code left"
-                        type="text" style="display:inline;"> <span class="left" style="margin-right:30px;"> X  </span>
-                    <input [(ngModel)]="model.Height" #Height="ngModel" id="Height" name="Height" required type="text" maxlength="3" class="validate box-style tel-code right"
-                        type="text">
+                    <input  [(ngModel)]="model.Width" #Width="ngModel" id="Width" name="Width" required type="text" class="validate box-style tel-code left"
+                    placeholder="Wdith"
+                      type="number" step="0.01" style="display:inline;"> <span class="left" style="margin-right:30px;"> X  </span>
+                    <input [(ngModel)]="model.Height" #Height="ngModel" id="Height" name="Height" required type="text"  class="validate box-style tel-code right"
+                      placeholder="Height" type="number" step="0.01">
                 </div>
             </div>
 
@@ -62,19 +63,37 @@
                     <span class="lable"> Medium<sup>*</sup></span>
                 </div>
                 <div class="input-field col s12 m9 l9">
-                    <select class="browser-default dp validate box-style " [(ngModel)]="model.MediumString" #MediumString="ngModel" name="MediumString"
-                        required>
+                    <div class="row">
+                        <div class=" col s12">
+                    <select (change)="checkmedia(t.value)" #t class="browser-default dp validate box-style "
+                     [(ngModel)]="model.MediumString" #MediumString="ngModel" name="MediumString"
+                      >
                         <option *ngFor="let p of MediumsList" value="{{p.mediums}}" >{{p.mediums}}</option>
-                    </select>
+                        <option>Others</option>
+                    </select><br/>
+                        </div>
+                    </div>
+                    <div class="row"  *ngIf="custMedia">
+                        <div class="col s3">Add your medium</div>
+                        <div class="col s8">
+                  <input [(ngModel)]="model.media"
+                   #media="ngModel" (keyup)="  this.model.MediumString=this.model.media;"  name="media" type="text" required class="validate box-style1"
+                        type="text">
+                        </div>
+                    </div>
+                     
                 </div>
             </div>
+            <div style="clear:both"></div>
             <div class="row">
                 <div class="input-field col s12 m3 l3">
-                    <span class="lable"> Price<sup>*</sup></span>
+                    <span class="lable"> Price<sup>*</sup><b> (USD $)</b></span>
                 </div>
                 <div class="input-field col s12 m9 l9">
-                    <input [(ngModel)]="model.Price" #Price="ngModel" id="Title" name="Price" type="text" required class="validate box-style1"
-                        type="text">
+                
+                   <input [(ngModel)]="model.Price" #Price="ngModel" id="Price" name="Price" type="number" required class="validate box-style1"
+                    >
+                 
                 </div>
 
             </div>
@@ -107,33 +126,64 @@
                     <span class="lable"> Add Tags<sup>*</sup></span>
                 </div>
                 <div class="input-field col s12 m9 l9">
-                    <input auto-complete id="auto" (valueChanged)="addtag($event)" class="validate box-style" [source]="TagList" list-formatter="tag"
-                        placeholder="Search Tags" />
+                     <div clas="row">
+                <div *ngIf="posttag && posttag.length>0" class=" col s12" style="border:1px solid #CCC; padding:5px;">
 
+                     <div *ngFor="let p of posttag" class="chip red white-text">
+                        {{p.tag}}
+                        <i (click)="posttag.splice(posttag.indexOf(p), 1);" class="close material-icons">close</i>
+                    </div>
+                    </div>
+                    </div>
+
+ <div clas="row">
+                <div class=" col s12" style="margin-top:10px;">
+                    <div (click)="addtag(p);" style="cursor: pointer" *ngFor="let p of specialTagList" class="chip">
+                        {{p.tag}}
+                        <i  class="close material-icons">+</i>
+                    </div>
+                     
                 </div>
-                <span class="right" style="margin-right:90px;">Adding tags will make your artwork easily searchable.</span>
+            </div>
+            <div style="clear:both"></div>
+<div class="row"> <div class=" col s12">
+                    <input *ngIf="specialTagList && specialTagList.length>0" auto-complete id="auto" (valueChanged)="addtag($event)" class="validate box-style" [source]="TagList" list-formatter="tag"
+                  
+                      placeholder="Search Tags" /></div> </div>
+
+     
+                </div>
+           <span class="right" style="margin-right:90px;">Adding tags will make your artwork easily searchable.</span>
             </div>
 
+<!-- <div clas="row">
+                <div class=" col s12" style="border:1px solid #CCC; padding:5px;">
+
+ <div *ngFor="let p of posttag" class="chip red white-text">
+                        {{p.tag}}
+                        <i (click)="posttag.splice(posttag.indexOf(p), 1);" class="close material-icons">close</i>
+                    </div>
+                    </div>
+                    </div>
+
             <div clas="row">
-                <div class=" col s12">
+                <div class=" col s12" style="margin-top:10px;">
                     <div *ngFor="let p of specialTagList" class="chip">
                         {{p.tag}}
                         <i (click)="addtag(p);" class="close material-icons">+</i>
                     </div>
-                      <div *ngFor="let p of posttag" class="chip teal lighten-2">
-                        {{p.tag}}
-                        <i (click)="posttag.splice(posttag.indexOf(p), 1);" class="close material-icons">close</i>
-                    </div>
+                     
                 </div>
-            </div>
+            </div> -->
             <div style="clear:both"></div>
             <div class="row">
                 <div class="input-field col s12 m3 l3">
                     <span class="lable"> Description<sup>*</sup></span>
                 </div>
                 <div class="input-field col s12 m9 l9">
+                   
                     <textarea id="Description" required [(ngModel)]="model.Description" #Description="ngModel" name="Description" class="tags materialize-textarea validate box-style"></textarea>
-
+                   
                 </div>
             </div>
 
@@ -149,6 +199,24 @@ sell this work.</label>
                 </div>
             </div>
             <br>
+
+
+        <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    <span class="lable"> Keywords<sup></sup><b> </b></span>
+                </div>
+                <div class="input-field col s12 m9 l9">
+                    <div class="row" *ngIf="postkeyword && postkeyword.length>0"><div class="col s12">
+                     <div *ngFor="let p of postkeyword" class="chip red white-text">
+                        {{p.word}}
+                        <i (click)="postkeyword.splice(posttag.indexOf(p), 1);" class="close material-icons">close</i>
+                    </div>
+                    </div></div>
+                    <div class="row"><div class="col s12">
+                   <input [(ngModel)]="model.keyword" #keyword="ngModel"  id="keywords" (keyup.space)="eventHandler(model.keyword)" name="keyword" type="text" class="validate box-style1">
+                </div></div></div>
+            </div>
+
             <loader [hidden]="!isloading"></loader>
             <div class="row center">
                 <button type="submit" class="waves-effect waves-light btn white black-text " [disabled]="!isimage || !uploadArt.valid" style="border-top:1px solid #ccc; border-bottom:1px solid #ccc; "> Submit</button>

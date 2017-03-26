@@ -28,16 +28,15 @@
         </div>
         <div class="input-field col s12 m9 l9">
           <input id="password" type="password" class="validate box-style" type="password" [(ngModel)]="model.password"  id="password" #password="ngModel" name="password" placeholder="password">
-      	</div>
+      <br />     <a routerLink="/account/password" class="white red-text left" style="font-size: 0.9rem; font-family: Century751 BT; font-style: italic;">Forgot Password</a> <a routerLink="/account/register" class="white red-text right" style="font-size: 0.9rem; font-family: Century751 BT; font-style: italic;">Register</a> 	</div>
+      
       </div>
+     
         <loader [hidden]="!isloading"></loader>
    <div class="row center">
      <div class="input-field col s12 m3 l3"> </div>
       <div class="input-field col s12 m9 l9">
 <button class="waves-effect waves-light btn white black-text" href="artistpage.html" style="border-top:1px solid #ccc; border-bottom:1px solid #ccc;" [disabled]="!login.valid" ><i class="material-icons right">fast_forward</i>Login</button>
-<a routerLink="/account/password" class="white red-text" 
-
- ><i class="material-icons right">fast_forward</i>Forgot Password</a>
   </div>   
     </div>  
     </form>

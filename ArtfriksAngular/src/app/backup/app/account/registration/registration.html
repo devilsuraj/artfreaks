@@ -1,0 +1,213 @@
+    <div class="col s11 m11 l8 offset-l2 offset-m1 offset-s1">
+    <div *ngIf="!OTP"  class="row" id="reg" [@cardauth]>
+     <h4 class="center" style="font-family:myFirstFont"> <b>Register/ Sign in</b> </h4>
+
+     <br/>
+        <form (ngSubmit)="userRegister(model)" #otpform="ngForm">
+            <div asp-validation-summary="All" class="text-danger"></div>
+             <div class="row">
+                <div class="input-field col s12 m2 l2">
+                    <span class="lable"> First Name<sup>*</sup></span>
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <input  class="validate box-style" required 
+                    [(ngModel)]="model.FirstName" name="FirstName"
+                    #FirstName="ngModel" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span> 
+                </div>
+                <div class="input-field col s12 m2 l2">
+                    <span class="lable"> Last Name<sup>*</sup></span>
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <input asp-for="LastName" class="validate box-style" required 
+                    [(ngModel)]="model.LastName" name="LastName"
+                    #LastName="ngModel" />
+                    <span asp-validation-for="LastName" class="text-danger"></span> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m2 l2">
+                    
+                </div>
+                 <div class="input-field col s12 m4 l4">
+                   
+
+           <div class="row"  style="font-family:myFirstFont">
+               
+                 <div class="input-field col m6">
+                   <!--form deleted  Use only one form on page--> 
+                        <input name="male" [(ngModel)]="model.gender" required   type="radio" group="a" id="Male" class="with-gap" value="Male" />
+                        <label style="font-size:18px;" for="Male">Male<sup style="color:crimson;">*</sup></label>                      
+                   
+                </div>
+                <div class="input-field col m6">
+                  
+                        <input name="male" [(ngModel)]="model.gender"   type="radio"  group="a" id="Female" class="with-gap" value="Female" />
+                        <label style="font-size:18px;" for="Female">Female<sup style="color:crimson;">*</sup></label>
+                       
+                </div>
+                            
+            </div>
+
+
+                </div>
+                 <div class="input-field col s12 m4 l5">
+                 </div>              
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m2 l2">
+                    <span class="lable"> Profession<sup>*</sup></span>
+                </div>
+                <div class="input-field col s12 m9 l9">
+                       <select class="browser-default dp validate box-style "
+                     [(ngModel)]="model.Profession"
+                      #Profession="ngModel" 
+                      name="Profession"  required>
+                        <option *ngFor="let p of ProfessionList" value="{{p.professionString}}" >{{p.professionString}}</option>
+                    </select>
+               
+                    <span asp-validation-for="Profession" class="text-danger"></span> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m2 l2">
+                    <span class="lable"> Email<sup>*</sup></span>
+                </div>
+                <div class="input-field col s12 m6 l6">
+                    <input  required type="email"  [(ngModel)]="model.email" name="email"
+                    #email="ngModel" class="validate box-style" />
+                    <span asp-validation-for="email" class="text-danger"></span> 
+                </div>
+                <div class="radi input-field col s12 m3 l3">
+                    <input asp-for="OTPfrom" value="2" class="with-gap red radio-bt" name="group1" type="radio" id="test4">
+                    <label for="test4">Yes, send OTP by Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m2 l2">
+                    <span class="lable"> Phone<sup>*</sup></span>
+                </div>
+                <div class="input-field col s12 m6 l6">
+                    <input asp-for="CountryCode"  [(ngModel)]="model.CountryCode" name="CountryCode"
+                    #CountryCode="ngModel"required  maxlength="3" type="number" class="validate box-style tel-code" style="float:left" />
+                     <input asp-for="Phone" required [(ngModel)]="model.Phone" name="Phone"
+                    #Phone="ngModel" type="number" class="validate box-style tel-num" style="float:left" />
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <input asp-for="OTPfrom" class="with-gap red radio-bt" value="1" name="group1" type="radio" id="test3">
+                    <label for="test3">Yes, send OTP by Phone</label>
+                </div>
+
+               
+            </div>
+
+            <div class="row">
+               
+                <div class="input-field col s12 m12 l12 right-align note">
+                 <p> An OTP (one time password) will be sent on your registered phone number.
+                   <br /> Please make sure your number is correct with country code etc. </p>
+                </div>
+               
+
+               
+            </div>
+
+ 
+
+            <div class="row">
+                <div class="input-field col s12 m2 l2">
+                    <span class="lable"> Address<sup>*</sup></span>
+                </div>
+                <div class="input-field col s12 m9 l9">
+                    <input type="text"  
+                    [(ngModel)]="model.address" 
+                    name="address"
+                    #address="ngModel" 
+                    required  
+                    id="address" 
+                    class="materialize-textarea validate box-style"/>
+              
+                    <input type="text" (focus)="initAutocomplete()"  [(ngModel)]="model.address2" name="address2"
+                    #address2="ngModel" required id="google_places_ac" class="materialize-textarea validate box-style"/>
+                    <span asp-validation-for="Address" class="text-danger"></span> 
+                </div>
+            </div>
+        <loader [hidden]="!isloading"></loader>
+            <button class="waves-effect waves-light btn right white black-text" type="submit"  [disabled]="!otpform.form.valid" [disabled]="isloading"  style="border-top:1px solid #ccc; border-bottom:1px solid #ccc;"  ><i class="material-icons right">fast_forward</i> {{onebtnText}}</button>
+            <a routerLink="/account/login" class="waves-effect waves-light btn right white black-text" >Login</a>
+          </form>
+    </div> <!-- /registartion ends-->
+    <!--:::::::: OTP DIV::::::::::  -->
+
+    <div class="hiddendiv common"></div><div class="drag-target" style="left: 0px; touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
+ <!-- /registartion ends-->
+
+
+<!--:::::::: OTP DIV::::::::::  -->
+<div *ngIf="OTP" [hidden]="last" class="row" id="otp"  [@cardauth]>
+    <h4 class="center red-text" style="font-family:MyriadPro Cond;"> Registration confirmation </h4>
+    <form class="col s12" (ngSubmit)="putUser(updatemodel)" #confirmform="ngForm">
+
+        <div class="row">
+            <div class="input-field col s12 m4 l4">
+                <span class="lable"> Cofirm OTP</span>
+            </div>
+            <div class="input-field col s12 m8 l8">
+                <input asp-for="OTP"  type="text" class="validate box-style " required 
+                    [(ngModel)]="updatemodel.OTP" name="OTP"
+                    #OTP="ngModel"/>
+                <span asp-validation-for="OTP" class="text-danger"></span> 
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12 m4 l4">
+                <span class="lable"> User Name</span>
+            </div>
+            <div class="input-field col s12 m8 l8">
+                <input asp-for="UserName" type="text" class="validate box-style" 
+                 required 
+                    [(ngModel)]="updatemodel.UserName" name="UserName"
+                    #UserName="ngModel" />
+                <span asp-validation-for="UserName" class="text-danger"></span> 
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12 m4 l4">
+                <span class="lable"> Password</span>
+            </div>
+            <div class="input-field col s12 m8 l8">
+                <input asp-for="Password" type="Password" class="validate box-style" 
+                required 
+                    [(ngModel)]="updatemodel.Password" name="Password"
+                    #Password="ngModel" />
+                <span asp-validation-for="Password" class="text-danger"></span> 
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12 m4 l4">
+                <span class="lable"> Confirm Password</span>
+            </div>
+            <div class="input-field col s12 m8 l8">
+                <input asp-for="ConfirmPassword" type="Password" class="validate box-style " required 
+                    [(ngModel)]="updatemodel.ConfirmPassword" name="ConfirmPassword"
+                    #ConfirmPassword="ngModel" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span> 
+            </div>
+        </div>
+        <loader [hidden]="!isloading"></loader>
+        <a class="waves-effect waves-light btn left white black-text"     (click)="isOTP()"  ><i class="material-icons left" >fast_rewind</i>Back</a>
+        <a class="waves-effect waves-light btn left white black-text" (click)="sendOTP(updatemodel)">Resend OTP</a>
+        <button type="submit" class="waves-effect waves-light btn right white black-text" [disabled]="!confirmform.valid"    style="border-top:1px solid #ccc; border-bottom:1px solid #ccc;" ><i class="material-icons right">fast_forward</i>Next</button>
+    </form>
+</div>  <!-- / otp ends-->
+
+<div *ngIf="last" class="row" id="otp"  [@cardauth]>
+    <h1>
+        Thank you
+            </h1><h3> for registering with artfreaks we will let you know once we are ready to serve you!</h3>
+
+    </div>
+    </div>

@@ -3,8 +3,16 @@
  <div class="sub-nav wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
   <div id="sub-nav-wrap"><div id="sub-menu-icon"></div>
         <ul id="menulink" class="sub-menu">
-        <li class="hide-on-med-and-down"> <a href="paintings.html" class="red-text" style="font-size:20px;"> {{cattitle}} </a> </li>
-            <li *ngFor="let item of subcats"><a routerLink="/artbycategory/{{item.id}}">{{item.title}}</a></li>
+        <li class="hide-on-med-and-down">
+             <a routerLink="/artbycategory/{{id}}" 
+             class="btn white black-text btn-flat " 
+             [class.selected]="selectedvalue==firstvalue" 
+           > 
+             {{cattitle}} </a> 
+             </li>
+            <li *ngFor="let item of subcats"><a style="cursor: pointer"
+             [class.selected]="selectedvalue==item.id"
+             (click)="getnewvalue(item.id)">{{item.title}}</a></li>
         </ul>
     </div>
 </div>
